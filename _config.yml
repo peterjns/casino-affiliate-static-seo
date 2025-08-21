@@ -1,0 +1,23 @@
+# GitHub Pages configuration
+title: CasinosOnlineJackpot
+description: Expert casino reviews, exclusive bonuses, and trusted recommendations for 2025
+url: https://peterjns.github.io/casino-affiliate-static-seo
+baseurl: /casino-affiliate-static-seo
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Exclude files
+exclude:
+  - README.md
+  - .github/
+  - .gitignore
+
+# Include files
+include:
+  - _pages
+  - blog/
