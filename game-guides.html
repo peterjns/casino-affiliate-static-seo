@@ -71,7 +71,7 @@
     <!-- Quick Navigation -->
     <section class="py-8 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
                 <a href="#blackjack" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
                     <div class="text-2xl mb-2">🃏</div>
                     <div class="font-medium text-gray-900">Blackjack</div>
@@ -87,6 +87,14 @@
                 <a href="#roulette" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
                     <i class="fas fa-circle text-2xl text-green-600 mb-2"></i>
                     <div class="font-medium text-gray-900">Roulette</div>
+                </a>
+                <a href="#baccarat" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
+                    <i class="fas fa-gem text-2xl text-purple-600 mb-2"></i>
+                    <div class="font-medium text-gray-900">Baccarat</div>
+                </a>
+                <a href="#craps" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
+                    <i class="fas fa-dice text-2xl text-orange-600 mb-2"></i>
+                    <div class="font-medium text-gray-900">Craps</div>
                 </a>
             </div>
         </div>
@@ -124,35 +132,165 @@
                                         <li>• Aces: 1 or 11 (whichever is better)</li>
                                     </ul>
                                 </div>
-                                <div class="bg-yellow-50 rounded-lg p-4">
-                                    <h4 class="font-semibold text-yellow-800 mb-2">Basic Actions</h4>
-                                    <ul class="text-sm text-yellow-700 space-y-1">
-                                        <li>• <strong>Hit:</strong> Take another card</li>
-                                        <li>• <strong>Stand:</strong> Keep current total</li>
-                                        <li>• <strong>Double:</strong> Double bet, take one card</li>
-                                        <li>• <strong>Split:</strong> Split pairs into two hands</li>
-                                    </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Key Strategies</h3>
+                            <div class="space-y-4">
+                                <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                                    <h4 class="font-semibold text-green-800">Always Split Aces & 8s</h4>
+                                    <p class="text-green-700 text-sm mt-1">These are mathematically the best splits</p>
+                                </div>
+                                <div class="bg-red-50 border-l-4 border-red-400 p-4">
+                                    <h4 class="font-semibold text-red-800">Never Take Insurance</h4>
+                                    <p class="text-red-700 text-sm mt-1">Insurance has a high house edge of 7.4%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Poker Guide -->
+        <section id="poker" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-red-600 to-red-800 text-white p-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-heart text-5xl mr-4"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold">Texas Hold'em Poker Guide</h2>
+                            <p class="text-red-100 mt-2">Learn the fundamentals of the world's most popular poker variant</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Hand Rankings</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center p-2 bg-yellow-50 rounded">
+                                    <span class="font-medium">Royal Flush</span>
+                                    <span class="text-sm text-gray-600">A-K-Q-J-10 suited</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                    <span class="font-medium">Straight Flush</span>
+                                    <span class="text-sm text-gray-600">5 cards in sequence, suited</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                    <span class="font-medium">Four of a Kind</span>
+                                    <span class="text-sm text-gray-600">4 cards of same rank</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2 bg-gray-50 rounded">
+                                    <span class="font-medium">Full House</span>
+                                    <span class="text-sm text-gray-600">3 of a kind + pair</span>
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Advanced Tips</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Basic Strategy</h3>
                             <div class="space-y-4">
-                                <div class="bg-red-50 border-l-4 border-red-400 p-4">
-                                    <h4 class="font-semibold text-red-800">Never Take Insurance</h4>
-                                    <p class="text-red-700 text-sm mt-1">Insurance is a side bet with a high house edge of 7.4%</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                    <h4 class="font-semibold text-blue-800">Position Matters</h4>
+                                    <p class="text-blue-700 text-sm mt-1">Play tighter in early position, looser in late position</p>
                                 </div>
                                 <div class="bg-green-50 border-l-4 border-green-400 p-4">
-                                    <h4 class="font-semibold text-green-800">Always Split Aces & 8s</h4>
-                                    <p class="text-green-700 text-sm mt-1">These are mathematically the best splits in blackjack</p>
+                                    <h4 class="font-semibold text-green-800">Bet for Value</h4>
+                                    <p class="text-green-700 text-sm mt-1">Bet when you have a strong hand to build the pot</p>
                                 </div>
-                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-                                    <h4 class="font-semibold text-blue-800">Never Split 10s or 5s</h4>
-                                    <p class="text-blue-700 text-sm mt-1">20 is too good to split, and 10 is better than two 5s</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slots Guide -->
+        <section id="slots" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-yellow-500 to-orange-600 text-white p-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-coins text-5xl mr-4"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold">Slot Machine Guide</h2>
+                            <p class="text-yellow-100 mt-2">Understand RTP, volatility, and maximize your slot experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Key Concepts</h3>
+                            <div class="space-y-4">
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-green-800 mb-2">RTP (Return to Player)</h4>
+                                    <p class="text-sm text-green-700">Look for slots with 96%+ RTP for better long-term returns</p>
                                 </div>
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-blue-800 mb-2">Volatility</h4>
+                                    <p class="text-sm text-blue-700">High volatility = bigger wins but less frequent. Low volatility = smaller, more frequent wins</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Best Practices</h3>
+                            <div class="space-y-4">
                                 <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
-                                    <h4 class="font-semibold text-purple-800">Use Basic Strategy Charts</h4>
-                                    <p class="text-purple-700 text-sm mt-1">Memorize or reference basic strategy for optimal play</p>
+                                    <h4 class="font-semibold text-purple-800">Set a Budget</h4>
+                                    <p class="text-purple-700 text-sm mt-1">Never play with money you can't afford to lose</p>
+                                </div>
+                                <div class="bg-orange-50 border-l-4 border-orange-400 p-4">
+                                    <h4 class="font-semibold text-orange-800">Use Bonuses Wisely</h4>
+                                    <p class="text-orange-700 text-sm mt-1">Free spins and bonus rounds offer extra value</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roulette Guide -->
+        <section id="roulette" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-green-600 to-green-800 text-white p-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-circle text-5xl mr-4"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold">Roulette Strategy Guide</h2>
+                            <p class="text-green-100 mt-2">Master the wheel with optimal betting strategies</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Bet Types</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center p-3 bg-red-50 rounded">
+                                    <span class="font-medium">Red/Black</span>
+                                    <span class="text-sm text-gray-600">1:1 payout</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-blue-50 rounded">
+                                    <span class="font-medium">Odd/Even</span>
+                                    <span class="text-sm text-gray-600">1:1 payout</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-green-50 rounded">
+                                    <span class="font-medium">Single Number</span>
+                                    <span class="text-sm text-gray-600">35:1 payout</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Pro Tips</h3>
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                    <h4 class="font-semibold text-blue-800">Choose European Roulette</h4>
+                                    <p class="text-blue-700 text-sm mt-1">Single zero gives better odds than American double zero</p>
+                                </div>
+                                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                                    <h4 class="font-semibold text-yellow-800">Manage Your Bankroll</h4>
+                                    <p class="text-yellow-700 text-sm mt-1">Set win/loss limits before you start playing</p>
                                 </div>
                             </div>
                         </div>
@@ -163,14 +301,14 @@
 
         <!-- CTA Section -->
         <section class="text-center">
-            <div class="bg-white rounded-lg shadow-lg p-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ready to Put Your Knowledge to the Test?</h2>
-                <p class="text-xl text-gray-600 mb-8">Explore our recommended casinos and start playing with confidence.</p>
-                <div class="space-x-4">
-                    <a href="casinos.html" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium">
+            <div class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg p-8 text-white">
+                <h2 class="text-3xl font-bold mb-4">Ready to Put Your Knowledge to the Test?</h2>
+                <p class="text-xl mb-6">Explore our recommended casinos and start playing with confidence.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="casinos.html" class="bg-white text-purple-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-medium">
                         Browse Casinos
                     </a>
-                    <a href="bonuses.html" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors text-lg font-medium">
+                    <a href="bonuses.html" class="bg-yellow-500 text-gray-900 px-8 py-3 rounded-lg hover:bg-yellow-400 transition-colors font-medium">
                         View Bonuses
                     </a>
                 </div>
