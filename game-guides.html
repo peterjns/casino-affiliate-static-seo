@@ -38,7 +38,7 @@
         "@type": "ItemList",
         "name": "Casino Game Guides",
         "description": "Comprehensive guides and strategies for popular casino games",
-        "numberOfItems": 4,
+        "numberOfItems": 6,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -46,7 +46,7 @@
             "item": {
               "@type": "Article",
               "name": "Blackjack Strategy Guide",
-              "description": "Complete guide to blackjack basic strategy and advanced techniques"
+              "description": "Complete blackjack strategy including basic strategy charts and card counting"
             }
           },
           {
@@ -74,6 +74,24 @@
               "@type": "Article",
               "name": "Roulette Strategy Guide",
               "description": "Roulette betting systems and probability analysis"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Article",
+              "name": "Baccarat Strategy Guide",
+              "description": "Master baccarat with advanced betting strategies and card counting"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Article",
+              "name": "Craps Strategy Guide",
+              "description": "Learn craps betting systems and dice control techniques"
             }
           }
         ]
@@ -108,28 +126,35 @@
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="bg-white shadow-sm">
+    <header class="bg-gradient-to-r from-purple-600 via-blue-600 to-green-500 shadow-lg">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <h1 class="text-xl font-bold text-blue-600">CasinoExpert</h1>
+                    <h1 class="text-2xl font-bold text-white">🎰 CasinosOnlineJackpot</h1>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="index.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Home</a>
-                        <a href="casinos.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Casinos</a>
-                        <a href="bonuses.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Bonuses</a>
-                        <a href="reviews.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Reviews</a>
-                        <a href="game-guides.html" class="text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Game Guides</a>
-                        <a href="payment-methods.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Payments</a>
+                        <a href="index.html" class="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="casinos.html" class="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors">Casinos</a>
+                        <a href="bonuses.html" class="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors">Bonuses</a>
+                        <a href="reviews.html" class="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors">Reviews</a>
+                        <a href="payment-methods.html" class="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors">Payments</a>
+                        <a href="blog.html" class="text-white hover:text-yellow-300 px-3 py-2 text-sm font-medium transition-colors">Blog</a>
+                        <a href="game-guides.html" class="bg-yellow-500 text-gray-900 px-3 py-2 text-sm font-medium rounded-md">Game Guides</a>
                     </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-white hover:text-yellow-300 focus:outline-none focus:text-yellow-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-16">
+    <section class="bg-gradient-to-r from-green-600 to-blue-700 text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-5xl font-bold mb-6">Casino Game Guides & Strategies</h1>
             <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Master the most popular casino games with our expert guides, strategies, and tips. Learn the odds, understand RTP, and improve your gameplay.</p>
@@ -139,9 +164,9 @@
     <!-- Quick Navigation -->
     <section class="py-8 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 <a href="#blackjack" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
-                    <div class="text-2xl mb-2">🃏</div>
+                    <div class="text-2xl mb-2">🏏</div>
                     <div class="font-medium text-gray-900">Blackjack</div>
                 </a>
                 <a href="#poker" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
@@ -155,6 +180,14 @@
                 <a href="#roulette" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
                     <i class="fas fa-circle text-2xl text-green-600 mb-2"></i>
                     <div class="font-medium text-gray-900">Roulette</div>
+                </a>
+                <a href="#baccarat" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
+                    <div class="text-2xl mb-2">🃏</div>
+                    <div class="font-medium text-gray-900">Baccarat</div>
+                </a>
+                <a href="#craps" class="bg-gray-100 hover:bg-gray-200 rounded-lg p-4 text-center transition-colors">
+                    <div class="text-2xl mb-2">🎲</div>
+                    <div class="font-medium text-gray-900">Craps</div>
                 </a>
             </div>
         </div>
@@ -198,14 +231,17 @@
                                 </li>
                             </ul>
 
-                            <h4 class="text-xl font-bold text-gray-900 mt-6 mb-3">Basic Strategy Rules</h4>
+                            <h4 class="text-xl font-bold text-gray-900 mt-6 mb-3">Pro-Level Basic Strategy (99.5% RTP)</h4>
                             <div class="bg-blue-50 rounded-lg p-4">
                                 <ul class="space-y-2 text-sm text-gray-700">
                                     <li><strong>Hard 17+:</strong> Always stand</li>
-                                    <li><strong>Hard 11:</strong> Always double down</li>
+                                    <li><strong>Hard 11:</strong> Always double down (except vs Ace in some variants)</li>
                                     <li><strong>Pairs of Aces/8s:</strong> Always split</li>
                                     <li><strong>Pairs of 10s/5s:</strong> Never split</li>
-                                    <li><strong>Soft 18 vs dealer 9-A:</strong> Hit</li>
+                                    <li><strong>Soft 18 vs dealer 9-A:</strong> Hit (most players get this wrong)</li>
+                                    <li><strong>16 vs 10:</strong> Hit (surrender if available)</li>
+                                    <li><strong>15 vs 10:</strong> Hit (surrender if available)</li>
+                                    <li><strong>A,7 vs 2:</strong> Double if allowed, otherwise stand</li>
                                 </ul>
                             </div>
                         </div>
@@ -213,16 +249,33 @@
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Advanced Tips</h3>
                             <div class="space-y-4">
                                 <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-                                    <h4 class="font-semibold text-yellow-800">Card Counting Basics</h4>
-                                    <p class="text-yellow-700 text-sm mt-1">Hi-Lo system: +1 for 2-6, 0 for 7-9, -1 for 10-A. Higher counts favor the player.</p>
+                                    <h4 class="font-semibold text-yellow-800">Advanced Card Counting (Hi-Lo System)</h4>
+                                    <p class="text-yellow-700 text-sm mt-1"><strong>Running Count:</strong> +1 for 2-6, 0 for 7-9, -1 for 10-A</p>
+                                    <p class="text-yellow-700 text-sm"><strong>True Count:</strong> Running count ÷ decks remaining</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Betting:</strong> Bet true count × unit size when TC ≥ +2</p>
                                 </div>
-                                <div class="bg-green-50 border-l-4 border-green-400 p-4">
-                                    <h4 class="font-semibold text-green-800">Bankroll Management</h4>
-                                    <p class="text-green-700 text-sm mt-1">Never bet more than 5% of your bankroll on a single hand. Set win/loss limits.</p>
+                                <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                                    <h4 class="font-semibold text-purple-800">Composition-Dependent Strategy</h4>
+                                    <p class="text-purple-700 text-sm mt-1"><strong>16 vs 10:</strong> Hit if 16 = 10+6, Stand if 16 = 9+7</p>
+                                    <p class="text-purple-700 text-sm"><strong>12 vs 4:</strong> Hit if 12 = 10+2, Stand if 12 = 7+5</p>
                                 </div>
-                                <div class="bg-red-50 border-l-4 border-red-400 p-4">
-                                    <h4 class="font-semibold text-red-800">Common Mistakes</h4>
-                                    <p class="text-red-700 text-sm mt-1">Avoid insurance bets, don't chase losses, and never deviate from basic strategy based on "hunches".</p>
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                    <h4 class="font-semibold text-blue-800">Advanced C-Betting Strategy</h4>
+                                    <p class="text-blue-700 text-sm mt-1"><strong>Dry Boards (A72r):</strong> C-bet 100% with range advantage</p>
+                                    <p class="text-blue-700 text-sm"><strong>Wet Boards (T98r):</strong> C-bet 33-50%, favor strong hands and draws</p>
+                                    <p class="text-blue-700 text-sm"><strong>Size:</strong> 33% pot on dry boards, 75% pot on wet boards</p>
+                                </div>
+                                <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                                    <h4 class="font-semibold text-purple-800">Solver-Based 3-Betting</h4>
+                                    <p class="text-purple-700 text-sm mt-1"><strong>vs UTG:</strong> 3-bet QQ+, AKs, mix AQs/AKo at 25% frequency</p>
+                                    <p class="text-purple-700 text-sm"><strong>vs Button:</strong> 3-bet 77+, A5s+, A9o+, K9s+, KQo, suited connectors</p>
+                                    <p class="text-purple-700 text-sm"><strong>Size:</strong> 3x in position, 3.5x out of position</p>
+                                </div>
+                                <div class="bg-orange-50 border-l-4 border-orange-400 p-4">
+                                    <h4 class="font-semibold text-orange-800">ICM Tournament Strategy</h4>
+                                    <p class="text-orange-700 text-sm mt-1"><strong>Bubble:</strong> Fold marginal hands, exploit tight players</p>
+                                    <p class="text-orange-700 text-sm"><strong>Final Table:</strong> Adjust ranges based on stack sizes and payout jumps</p>
+                                    <p class="text-orange-700 text-sm"><strong>Push/Fold:</strong> Use Nash equilibrium charts for <15bb stacks</p>
                                 </div>
                             </div>
                         </div>
@@ -279,9 +332,10 @@
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Basic Strategy</h3>
                             <div class="space-y-4">
                                 <div class="bg-green-50 border-l-4 border-green-400 p-4">
-                                    <h4 class="font-semibold text-green-800">Starting Hands</h4>
-                                    <p class="text-green-700 text-sm mt-1"><strong>Premium:</strong> AA, KK, QQ, AK suited</p>
-                                    <p class="text-green-700 text-sm"><strong>Strong:</strong> JJ, 10-10, AQ, AK offsuit</p>
+                                    <h4 class="font-semibold text-green-800">GTO Starting Hand Ranges</h4>
+                                    <p class="text-green-700 text-sm mt-1"><strong>UTG (9-max):</strong> 22+, A2s+, KTs+, QTs+, JTs, T9s, 98s, 87s, ATo+, KQo</p>
+                                    <p class="text-green-700 text-sm"><strong>Button:</strong> 22+, A2+, K2s+, Q2s+, J5s+, T6s+, 96s+, 85s+, 75s+, 64s+, 54s, K8o+, Q9o+, J9o+, T9o</p>
+                                    <p class="text-green-700 text-sm"><strong>Small Blind:</strong> Raise 22+, A2s+, K2s+, Q4s+, J7s+, T7s+, 97s+, 86s+, 76s, 65s, A8o+, K9o+, Q9o+, J9o+, T9o</p>
                                     <p class="text-green-700 text-sm"><strong>Playable:</strong> 99-77, suited connectors, A-x suited</p>
                                 </div>
                                 
@@ -321,20 +375,23 @@
                             <h3 class="text-2xl font-bold text-gray-900 mb-4">Understanding RTP & Volatility</h3>
                             <div class="space-y-4">
                                 <div class="bg-green-50 rounded-lg p-4">
-                                    <h4 class="font-semibold text-green-800 mb-2">Return to Player (RTP)</h4>
+                                    <h4 class="font-semibold text-green-800 mb-2">Highest RTP Slots (98%+ RTP)</h4>
                                     <ul class="space-y-1 text-sm text-green-700">
-                                        <li><strong>High RTP:</strong> 96%+ (Better long-term returns)</li>
-                                        <li><strong>Average RTP:</strong> 94-96% (Standard slots)</li>
-                                        <li><strong>Low RTP:</strong> Below 94% (Avoid these)</li>
+                                        <li><strong>Mega Joker (NetEnt):</strong> 99% RTP in supermeter mode</li>
+                                        <li><strong>Blood Suckers (NetEnt):</strong> 98% RTP</li>
+                                        <li><strong>Kings of Chicago (NetEnt):</strong> 97.8% RTP</li>
+                                        <li><strong>Devil's Delight (NetEnt):</strong> 97.6% RTP</li>
+                                        <li><strong>Jackpot 6000 (NetEnt):</strong> 98.9% RTP in supermeter</li>
                                     </ul>
                                 </div>
                                 
                                 <div class="bg-blue-50 rounded-lg p-4">
-                                    <h4 class="font-semibold text-blue-800 mb-2">Volatility Types</h4>
+                                    <h4 class="font-semibold text-blue-800 mb-2">Pro Volatility Strategy</h4>
                                     <ul class="space-y-1 text-sm text-blue-700">
-                                        <li><strong>Low:</strong> Frequent small wins, steady gameplay</li>
-                                        <li><strong>Medium:</strong> Balanced wins and risk</li>
-                                        <li><strong>High:</strong> Rare but large wins, higher risk</li>
+                                        <li><strong>Low Volatility:</strong> 200-400x bet max wins, 35-45% hit frequency</li>
+                                        <li><strong>Medium Volatility:</strong> 1000-5000x bet max wins, 25-35% hit frequency</li>
+                                        <li><strong>High Volatility:</strong> 10000x+ bet max wins, 15-25% hit frequency</li>
+                                        <li><strong>Strategy:</strong> Match volatility to bankroll size and session goals</li>
                                     </ul>
                                 </div>
                                 
@@ -350,36 +407,31 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Slot Strategy Tips</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Advanced Slot Strategies</h3>
                             <div class="space-y-4">
-                                <div class="bg-red-50 border-l-4 border-red-400 p-4">
-                                    <h4 class="font-semibold text-red-800">Bankroll Management</h4>
-                                    <ul class="text-red-700 text-sm mt-1 space-y-1">
-                                        <li>• Set a budget before playing</li>
-                                        <li>• Choose bet size: 1-2% of bankroll per spin</li>
-                                        <li>• Never chase losses</li>
-                                        <li>• Set win/loss limits</li>
-                                    </ul>
+                                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                                    <h4 class="font-semibold text-yellow-800">Optimal Bet Sizing Formula</h4>
+                                    <p class="text-yellow-700 text-sm mt-1"><strong>Low Vol:</strong> 1-2% of bankroll per spin</p>
+                                    <p class="text-yellow-700 text-sm"><strong>High Vol:</strong> 0.25-0.5% of bankroll per spin</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Target:</strong> 300+ spins minimum for variance smoothing</p>
                                 </div>
-                                
                                 <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
-                                    <h4 class="font-semibold text-purple-800">Game Selection</h4>
-                                    <ul class="text-purple-700 text-sm mt-1 space-y-1">
-                                        <li>• Choose high RTP slots (96%+)</li>
-                                        <li>• Match volatility to your style</li>
-                                        <li>• Understand bonus features</li>
-                                        <li>• Try demo versions first</li>
-                                    </ul>
+                                    <h4 class="font-semibold text-purple-800">Bonus Buy Strategy</h4>
+                                    <p class="text-purple-700 text-sm mt-1"><strong>When to Buy:</strong> Only if bonus RTP > base game RTP</p>
+                                    <p class="text-purple-700 text-sm"><strong>Cost Analysis:</strong> Calculate expected value vs bonus price</p>
+                                    <p class="text-purple-700 text-sm"><strong>Bankroll Rule:</strong> Never spend >5% bankroll on single bonus</p>
                                 </div>
-                                
-                                <div class="bg-orange-50 border-l-4 border-orange-400 p-4">
-                                    <h4 class="font-semibold text-orange-800">Bonus Features</h4>
-                                    <ul class="text-orange-700 text-sm mt-1 space-y-1">
-                                        <li>• <strong>Free Spins:</strong> No cost spins with potential multipliers</li>
-                                        <li>• <strong>Wild Symbols:</strong> Substitute for other symbols</li>
-                                        <li>• <strong>Scatter Pays:</strong> Win anywhere on reels</li>
-                                        <li>• <strong>Bonus Rounds:</strong> Interactive mini-games</li>
-                                    </ul>
+                                <div class="bg-red-50 border-l-4 border-red-400 p-4">
+                                    <h4 class="font-semibold text-red-800">Megaways Optimization</h4>
+                                    <p class="text-red-700 text-sm mt-1"><strong>Max Ways:</strong> Look for 117,649+ ways slots</p>
+                                    <p class="text-red-700 text-sm"><strong>Cascade Multipliers:</strong> Prioritize unlimited multiplier slots</p>
+                                    <p class="text-red-700 text-sm"><strong>Bonus Frequency:</strong> Target 1 in 300-500 spins trigger rate</p>
+                                </div>
+                                <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                                    <h4 class="font-semibold text-green-800">Session Management</h4>
+                                    <p class="text-green-700 text-sm mt-1"><strong>Win Goal:</strong> Stop at 50-100% profit</p>
+                                    <p class="text-green-700 text-sm"><strong>Loss Limit:</strong> Never exceed 50% of session bankroll</p>
+                                    <p class="text-green-700 text-sm"><strong>Time Limits:</strong> Max 2-hour sessions to avoid tilt</p>
                                 </div>
                             </div>
                         </div>
@@ -438,17 +490,36 @@
                             </div>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Betting Systems</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Advanced Roulette Strategies</h3>
                             <div class="space-y-4">
                                 <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
-                                    <h4 class="font-semibold text-yellow-800">Martingale System</h4>
-                                    <p class="text-yellow-700 text-sm mt-1"><strong>Strategy:</strong> Double bet after each loss</p>
-                                    <p class="text-yellow-700 text-sm"><strong>Risk:</strong> Requires large bankroll, table limits</p>
+                                    <h4 class="font-semibold text-yellow-800">Sector Betting Strategy</h4>
+                                    <p class="text-yellow-700 text-sm mt-1"><strong>Voisins du Zero:</strong> Cover 17 numbers near zero (9 chips)</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Tiers du Cylindre:</strong> Cover 12 numbers opposite zero (6 chips)</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Orphelins:</strong> Cover remaining 8 numbers (5 chips)</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Advantage:</strong> 45.9% coverage with strategic payouts</p>
                                 </div>
-                                
+                                <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                                    <h4 class="font-semibold text-purple-800">Biased Wheel Detection</h4>
+                                    <p class="text-purple-700 text-sm mt-1"><strong>Sample Size:</strong> Track 1000+ spins minimum</p>
+                                    <p class="text-purple-700 text-sm"><strong>Hot Numbers:</strong> Numbers hitting >3.5% frequency</p>
+                                    <p class="text-purple-700 text-sm"><strong>Cold Numbers:</strong> Numbers hitting <1.5% frequency</p>
+                                    <p class="text-purple-700 text-sm"><strong>Exploit:</strong> Bet hot numbers with 1-2% edge potential</p>
+                                </div>
                                 <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-                                    <h4 class="font-semibold text-blue-800">D'Alembert System</h4>
-                                    <p class="text-blue-700 text-sm mt-1"><strong>Strategy:</strong> Increase bet by 1 unit after loss, decrease by 1 after win</p>
+                                    <h4 class="font-semibold text-blue-800">Dealer Signature Method</h4>
+                                    <p class="text-blue-700 text-sm mt-1"><strong>Observation:</strong> Track dealer spin patterns and timing</p>
+                                    <p class="text-blue-700 text-sm"><strong>Prediction:</strong> Estimate ball landing within 6-number range</p>
+                                    <p class="text-blue-700 text-sm"><strong>Betting:</strong> Cover predicted sector with straight-ups</p>
+                                    <p class="text-blue-700 text-sm"><strong>Edge:</strong> 15-20% advantage when executed properly</p>
+                                </div>
+                                <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                                    <h4 class="font-semibold text-green-800">Optimal Bankroll Strategy</h4>
+                                    <p class="text-green-700 text-sm mt-1"><strong>Unit Size:</strong> 1% of total bankroll per bet</p>
+                                    <p class="text-green-700 text-sm"><strong>Session Limit:</strong> Risk max 20% of bankroll per session</p>
+                                    <p class="text-green-700 text-sm"><strong>Stop Loss:</strong> -10% of session bankroll</p>
+                                    <p class="text-green-700 text-sm"><strong>Win Goal:</strong> +25% of session bankroll</p>
+                                </div>
                                     <p class="text-blue-700 text-sm"><strong>Risk:</strong> Lower risk than Martingale</p>
                                 </div>
                                 
@@ -461,6 +532,251 @@
                                 <div class="bg-gray-100 border-l-4 border-gray-400 p-4">
                                     <h4 class="font-semibold text-gray-800">Important Note</h4>
                                     <p class="text-gray-700 text-sm mt-1">No betting system can overcome the house edge. All systems are for entertainment and bankroll management only.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Baccarat Guide -->
+        <section id="baccarat" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-yellow-500 to-orange-600 text-white p-8">
+                    <div class="flex items-center">
+                        <div class="text-5xl mr-4">🃏</div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Baccarat Strategy Guide</h2>
+                            <p class="text-yellow-100 mt-2">Master the elegant game of baccarat with proven strategies and expert tips</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Game Basics</h3>
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-blue-800 mb-2">Objective</h4>
+                                    <p class="text-sm text-blue-700">Bet on which hand (Player or Banker) will have a total closest to 9, or if they'll tie.</p>
+                                </div>
+                                
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-green-800 mb-2">Card Values</h4>
+                                    <ul class="space-y-1 text-sm text-green-700">
+                                        <li><strong>Ace:</strong> 1 point</li>
+                                        <li><strong>2-9:</strong> Face value</li>
+                                        <li><strong>10, J, Q, K:</strong> 0 points</li>
+                                        <li><strong>Total over 9:</strong> Drop the first digit (e.g., 15 = 5)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-purple-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-purple-800 mb-2">Third Card Rules</h4>
+                                    <ul class="space-y-1 text-sm text-purple-700">
+                                        <li><strong>Player:</strong> Draws on 0-5, stands on 6-7</li>
+                                        <li><strong>Banker:</strong> Complex rules based on Player's third card</li>
+                                        <li><strong>Natural:</strong> 8 or 9 total stops all drawing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Betting Options & Payouts</h3>
+                            <div class="space-y-4">
+                                <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                                    <h4 class="font-semibold text-green-800">Banker Bet</h4>
+                                    <div class="text-sm text-green-700 mt-1">
+                                        <p><strong>Payout:</strong> 1:1 (minus 5% commission)</p>
+                                        <p><strong>House Edge:</strong> 1.06%</p>
+                                        <p><strong>Best Bet:</strong> Lowest house edge</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                    <h4 class="font-semibold text-blue-800">Player Bet</h4>
+                                    <div class="text-sm text-blue-700 mt-1">
+                                        <p><strong>Payout:</strong> 1:1 (no commission)</p>
+                                        <p><strong>House Edge:</strong> 1.24%</p>
+                                        <p><strong>Second Best:</strong> Slightly higher edge</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-red-50 border-l-4 border-red-400 p-4">
+                                    <h4 class="font-semibold text-red-800">Tie Bet</h4>
+                                    <div class="text-sm text-red-700 mt-1">
+                                        <p><strong>Payout:</strong> 8:1 or 9:1</p>
+                                        <p><strong>House Edge:</strong> 14.4%</p>
+                                        <p><strong>Avoid:</strong> Very high house edge</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-8">
+                        <h3 class="text-xl font-bold text-yellow-800 mb-4">Advanced Baccarat Strategies</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-yellow-800 mb-2">Edge Sorting Technique</h4>
+                                <ul class="space-y-1 text-sm text-yellow-700">
+                                    <li><strong>Method:</strong> Identify card back pattern variations</li>
+                                    <li><strong>Target Cards:</strong> Focus on 6, 7, 8, 9 identification</li>
+                                    <li><strong>Advantage:</strong> 6.76% edge when executed properly</li>
+                                    <li><strong>Requirement:</strong> Automatic shuffler with consistent orientation</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-yellow-800 mb-2">Banker Streak Exploitation</h4>
+                                <ul class="space-y-1 text-sm text-yellow-700">
+                                    <li><strong>Pattern:</strong> Banker wins 50.68% vs Player 49.32%</li>
+                                    <li><strong>Strategy:</strong> Bet Banker after 3+ consecutive Player wins</li>
+                                    <li><strong>Progression:</strong> 1-2-4 unit betting on Banker streaks</li>
+                                    <li><strong>Stop Loss:</strong> After 3 consecutive losses</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-yellow-800 mb-2">Card Counting System</h4>
+                                <ul class="space-y-1 text-sm text-yellow-700">
+                                    <li><strong>Count:</strong> +1 for A,2,3 | -1 for 10,J,Q,K | 0 for 4-9</li>
+                                    <li><strong>Bet Banker:</strong> When true count is +16 or higher</li>
+                                    <li><strong>Bet Player:</strong> When true count is -16 or lower</li>
+                                    <li><strong>Edge:</strong> 0.6% advantage at extreme counts</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-yellow-800 mb-2">Optimal Bankroll Management</h4>
+                                <ul class="space-y-1 text-sm text-yellow-700">
+                                    <li><strong>Unit Size:</strong> 2% of total bankroll maximum</li>
+                                    <li><strong>Session Limit:</strong> 50 hands or 2 hours maximum</li>
+                                    <li><strong>Win Goal:</strong> 20% of session bankroll</li>
+                                    <li><strong>Loss Limit:</strong> 30% of session bankroll</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Craps Guide -->
+        <section id="craps" class="mb-16">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="bg-gradient-to-r from-red-600 to-pink-600 text-white p-8">
+                    <div class="flex items-center">
+                        <div class="text-5xl mr-4">🎲</div>
+                        <div>
+                            <h2 class="text-3xl font-bold">Craps Strategy Guide</h2>
+                            <p class="text-red-100 mt-2">Navigate the exciting world of craps with smart betting strategies and expert knowledge</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Game Flow</h3>
+                            <div class="space-y-4">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-blue-800 mb-2">Come Out Roll</h4>
+                                    <ul class="space-y-1 text-sm text-blue-700">
+                                        <li><strong>7 or 11:</strong> Pass Line wins, Don't Pass loses</li>
+                                        <li><strong>2, 3, or 12:</strong> Pass Line loses, Don't Pass wins (12 pushes)</li>
+                                        <li><strong>4, 5, 6, 8, 9, 10:</strong> Becomes the "Point"</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-green-800 mb-2">Point Phase</h4>
+                                    <ul class="space-y-1 text-sm text-green-700">
+                                        <li><strong>Roll Point again:</strong> Pass Line wins</li>
+                                        <li><strong>Roll 7:</strong> Pass Line loses ("Seven Out")</li>
+                                        <li><strong>Other numbers:</strong> Keep rolling</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Best Bets (Low House Edge)</h3>
+                            <div class="space-y-4">
+                                <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                                    <h4 class="font-semibold text-green-800">Pass Line</h4>
+                                    <div class="text-sm text-green-700 mt-1">
+                                        <p><strong>House Edge:</strong> 1.36%</p>
+                                        <p><strong>Payout:</strong> 1:1</p>
+                                        <p><strong>Best for beginners</strong></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                    <h4 class="font-semibold text-blue-800">Don't Pass</h4>
+                                    <div class="text-sm text-blue-700 mt-1">
+                                        <p><strong>House Edge:</strong> 1.38%</p>
+                                        <p><strong>Payout:</strong> 1:1</p>
+                                        <p><strong>Betting against the shooter</strong></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                                    <h4 class="font-semibold text-purple-800">Odds Bets</h4>
+                                    <div class="text-sm text-purple-700 mt-1">
+                                        <p><strong>House Edge:</strong> 0%</p>
+                                        <p><strong>Payout:</strong> True odds</p>
+                                        <p><strong>Best bet in casino</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Bets to Avoid</h3>
+                            <div class="space-y-3">
+                                <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+                                    <h4 class="font-semibold text-red-800 text-sm">Any 7 (16.67% house edge)</h4>
+                                </div>
+                                <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+                                    <h4 class="font-semibold text-red-800 text-sm">Hard Ways (9.09-11.11% house edge)</h4>
+                                </div>
+                                <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+                                    <h4 class="font-semibold text-red-800 text-sm">Proposition Bets (11.11-16.67% house edge)</h4>
+                                </div>
+                                <div class="bg-red-50 border border-red-200 rounded-lg p-3">
+                                    <h4 class="font-semibold text-red-800 text-sm">Big 6/Big 8 (9.09% house edge)</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Advanced Craps Strategies</h3>
+                            <div class="space-y-4">
+                                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                                    <h4 class="font-semibold text-yellow-800">Dice Control Technique</h4>
+                                    <p class="text-yellow-700 text-sm mt-1"><strong>Grip:</strong> Use 3-finger front, 2-finger back "V" set</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Throw:</strong> 45-degree arc, same spot landing</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Practice:</strong> 10,000+ throws to develop consistency</p>
+                                    <p class="text-yellow-700 text-sm"><strong>Edge:</strong> 2-5% advantage when mastered</p>
+                                </div>
+                                <div class="bg-purple-50 border-l-4 border-purple-400 p-4">
+                                    <h4 class="font-semibold text-purple-800">Maximum Odds Strategy</h4>
+                                    <p class="text-purple-700 text-sm mt-1"><strong>Bankroll:</strong> 100x table minimum for proper odds</p>
+                                    <p class="text-purple-700 text-sm"><strong>Bet Size:</strong> Minimum Pass Line + maximum odds</p>
+                                    <p class="text-purple-700 text-sm"><strong>House Edge:</strong> Reduces to 0.18% with 10x odds</p>
+                                    <p class="text-purple-700 text-sm"><strong>Variance:</strong> High swings require discipline</p>
+                                </div>
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
+                                    <h4 class="font-semibold text-blue-800">Don't Pass Lay Strategy</h4>
+                                    <p class="text-blue-700 text-sm mt-1"><strong>Method:</strong> Don't Pass + lay maximum odds</p>
+                                    <p class="text-blue-700 text-sm"><strong>Advantage:</strong> Slightly lower house edge (1.36%)</p>
+                                    <p class="text-blue-700 text-sm"><strong>Psychology:</strong> Betting against other players</p>
+                                    <p class="text-blue-700 text-sm"><strong>Profit:</strong> Consistent small wins, rare large losses</p>
+                                </div>
+                                <div class="bg-green-50 border-l-4 border-green-400 p-4">
+                                    <h4 class="font-semibold text-green-800">Optimal Session Management</h4>
+                                    <p class="text-green-700 text-sm mt-1"><strong>Bankroll:</strong> 10% of total for each session</p>
+                                    <p class="text-green-700 text-sm"><strong>Win Goal:</strong> 30-50% of session bankroll</p>
+                                    <p class="text-green-700 text-sm"><strong>Loss Limit:</strong> 100% of session bankroll</p>
+                                    <p class="text-green-700 text-sm"><strong>Time Limit:</strong> 2-3 hours maximum per session</p>
                                 </div>
                             </div>
                         </div>
@@ -510,6 +826,8 @@
                         <li><a href="#poker" class="hover:text-white">Poker</a></li>
                         <li><a href="#slots" class="hover:text-white">Slots</a></li>
                         <li><a href="#roulette" class="hover:text-white">Roulette</a></li>
+                        <li><a href="#baccarat" class="hover:text-white">Baccarat</a></li>
+                        <li><a href="#craps" class="hover:text-white">Craps</a></li>
                     </ul>
                 </div>
                 <div>
