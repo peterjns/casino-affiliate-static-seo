@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Casino Logo Generator</title>
+    <style>
+        .logo-container {
+            width: 200px;
+            height: 200px;
+            margin: 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+        }
+        
+        .betway-logo {
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, bold;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .dreambet-logo {
+            background: linear-gradient(45deg, #7c3aed, #a855f7);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, bold;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+        }
+        
+        .dreambet-logo::before {
+            content: "DB";
+            position: absolute;
+            font-size: 48px;
+            opacity: 0.3;
+        }
+        
+        .leovegas-logo {
+            background: linear-gradient(45deg, #ea580c, #f97316);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, bold;
+            font-size: 20px;
+            font-weight: bold;
+            flex-direction: column;
+        }
+        
+        .casumo-logo {
+            background: linear-gradient(45deg, #7c2d12, #ea580c);
+            color: #fbbf24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, bold;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .casino888-logo {
+            background: linear-gradient(45deg, #15803d, #22c55e);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, bold;
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Casino Logos</h1>
+    
+    <div class="logo-container betway-logo">
+        bet<span style="color: #3b82f6;">casino</span>way
+    </div>
+    
+    <div class="logo-container dreambet-logo">
+        DreamBet
+    </div>
+    
+    <div class="logo-container leovegas-logo">
+        🦁<br>LeoVegas
+    </div>
+    
+    <div class="logo-container casumo-logo">
+        CASUMO
+    </div>
+    
+    <div class="logo-container casino888-logo">
+        888<br>casino
+    </div>
+    
+    <script>
+        // Convert each logo to canvas and download as PNG
+        function createLogoImage(className, filename) {
+            const element = document.querySelector('.' + className);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = 200;
+            canvas.height = 200;
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 200, 200);
+            
+            if (className === 'betway-logo') {
+                gradient.addColorStop(0, '#1e3a8a');
+                gradient.addColorStop(1, '#3b82f6');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, 200, 200);
+                
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 20px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('bet', 100, 85);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fillText('casino', 100, 110);
+                ctx.fillStyle = 'white';
+                ctx.fillText('way', 100, 135);
+            }
+            
+            // Convert to blob and download
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+        
+        // Auto-generate logos
+        setTimeout(() => {
+            createLogoImage('betway-logo', 'betway-logo.png');
+            createLogoImage('dreambet-logo', 'dreambet-logo.png');
+            createLogoImage('leovegas-logo', 'leovegas-logo.png');
+            createLogoImage('casumo-logo', 'casumo-logo.png');
+            createLogoImage('casino888-logo', '888-casino-logo.png');
+        }, 1000);
+    </script>
+</body>
+</html>
