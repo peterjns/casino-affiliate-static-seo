@@ -1,0 +1,47 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "CasinosOnlineJackpot",
+  "url": "https://peterjns.github.io/casino-affiliate-static-seo/",
+  "description": "Best online casinos 2025 with expert reviews and exclusive bonuses",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://peterjns.github.io/casino-affiliate-static-seo/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "mainEntity": [
+    {
+      "@type": "Organization",
+      "name": "DreamBet Casino",
+      "url": "https://dreambet.io",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "bestRating": "5",
+        "ratingCount": "1250"
+      }
+    },
+    {
+      "@type": "Organization", 
+      "name": "Stake Casino",
+      "url": "https://stake.com",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "ratingCount": "2100"
+      }
+    },
+    {
+      "@type": "Organization",
+      "name": "LeoVegas Casino", 
+      "url": "https://leovegas.com",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.6",
+        "bestRating": "5", 
+        "ratingCount": "1800"
+      }
+    }
+  ]
+}
