@@ -547,9 +547,9 @@
 
         let isSpinning = false;
 
-        // Check if user can spin (24-hour cooldown)
+        // Check if user can spin (24-hour cooldown using cookies)
         function canUserSpin() {
-            const lastSpin = localStorage.getItem('dreambet_last_spin');
+            const lastSpin = getCookie('dreambet_last_spin');
             if (!lastSpin) return true;
             
             const lastSpinTime = new Date(lastSpin);
@@ -559,14 +559,32 @@
             return hoursDiff >= 24;
         }
 
-        // Set last spin time
+        // Set last spin time using cookies
         function setLastSpinTime() {
-            localStorage.setItem('dreambet_last_spin', new Date().toISOString());
+            const expiryDate = new Date();
+            expiryDate.setTime(expiryDate.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days
+            setCookie('dreambet_last_spin', new Date().toISOString(), expiryDate);
+        }
+
+        // Cookie helper functions
+        function setCookie(name, value, expires) {
+            document.cookie = name + "=" + value + ";expires=" + expires.toUTCString() + ";path=/;SameSite=Strict";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
         }
 
         // Get time until next spin
         function getTimeUntilNextSpin() {
-            const lastSpin = localStorage.getItem('dreambet_last_spin');
+            const lastSpin = getCookie('dreambet_last_spin');
             if (!lastSpin) return null;
             
             const lastSpinTime = new Date(lastSpin);
@@ -708,9 +726,9 @@
 
         // Initialize wheel on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Force check localStorage on every page load
+            // Force check cookies on every page load
             console.log('Checking spin cooldown on page load...');
-            const lastSpin = localStorage.getItem('dreambet_last_spin');
+            const lastSpin = getCookie('dreambet_last_spin');
             console.log('Last spin time:', lastSpin);
             
             initializeWheel();
