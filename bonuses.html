@@ -346,18 +346,95 @@
     <script>
         // Bonus wheel functionality
         const bonuses = [
-            { text: "$50 Free Bonus", subtext: "No deposit required!", icon: "💰" },
-            { text: "100 Free Spins", subtext: "On Starburst slot!", icon: "🎰" },
-            { text: "$500 Match Bonus", subtext: "200% first deposit!", icon: "💎" },
-            { text: "VIP Status", subtext: "Instant upgrade!", icon: "👑" },
-            { text: "$1000 Cashback", subtext: "Weekly cashback!", icon: "💸" },
-            { text: "Mystery Bonus", subtext: "Surprise reward!", icon: "🎁" }
+            { text: "$50 Free Bonus", subtext: "No deposit required!", icon: "💰", code: "DREAM50" },
+            { text: "100 Free Spins", subtext: "On Starburst slot!", icon: "🎰", code: "SPIN100" },
+            { text: "$500 Match Bonus", subtext: "200% first deposit!", icon: "💎", code: "MATCH500" },
+            { text: "VIP Status", subtext: "Instant upgrade!", icon: "👑", code: "VIP2025" },
+            { text: "$1000 Cashback", subtext: "Weekly cashback!", icon: "💸", code: "CASH1000" },
+            { text: "Mystery Bonus", subtext: "Surprise reward!", icon: "🎁", code: "MYSTERY" }
         ];
 
         let isSpinning = false;
 
+        // Check if user can spin (24-hour cooldown)
+        function canUserSpin() {
+            const lastSpin = localStorage.getItem('dreambet_last_spin');
+            if (!lastSpin) return true;
+            
+            const lastSpinTime = new Date(lastSpin);
+            const now = new Date();
+            const hoursDiff = (now - lastSpinTime) / (1000 * 60 * 60);
+            
+            return hoursDiff >= 24;
+        }
+
+        // Set last spin time
+        function setLastSpinTime() {
+            localStorage.setItem('dreambet_last_spin', new Date().toISOString());
+        }
+
+        // Get time until next spin
+        function getTimeUntilNextSpin() {
+            const lastSpin = localStorage.getItem('dreambet_last_spin');
+            if (!lastSpin) return null;
+            
+            const lastSpinTime = new Date(lastSpin);
+            const nextSpinTime = new Date(lastSpinTime.getTime() + (24 * 60 * 60 * 1000));
+            const now = new Date();
+            
+            if (now >= nextSpinTime) return null;
+            
+            const diff = nextSpinTime - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            return `${hours}h ${minutes}m`;
+        }
+
+        // Store winning result for DreamBet integration
+        function storeWinningResult(bonus) {
+            const winData = {
+                timestamp: new Date().toISOString(),
+                bonus: bonus.text,
+                code: bonus.code,
+                subtext: bonus.subtext,
+                icon: bonus.icon,
+                claimed: false
+            };
+            
+            // Store in localStorage for DreamBet.io to access
+            localStorage.setItem('dreambet_winning_bonus', JSON.stringify(winData));
+            
+            // Also store in a list of all wins
+            const allWins = JSON.parse(localStorage.getItem('dreambet_all_wins') || '[]');
+            allWins.push(winData);
+            localStorage.setItem('dreambet_all_wins', JSON.stringify(allWins));
+            
+            console.log('Bonus won and stored:', winData);
+        }
+
+        // Initialize wheel state
+        function initializeWheel() {
+            const wheelIcon = document.getElementById('wheelIcon');
+            const wheelText = document.getElementById('wheelText');
+            const button = document.getElementById('spinButton');
+            
+            if (!canUserSpin()) {
+                const timeLeft = getTimeUntilNextSpin();
+                button.disabled = true;
+                button.innerHTML = `<i class="fas fa-clock mr-2"></i>Next spin in ${timeLeft}`;
+                wheelText.textContent = 'Come back tomorrow!';
+                wheelIcon.textContent = '⏰';
+            } else {
+                wheelText.textContent = 'Spin to Win!';
+                wheelIcon.textContent = '🎁';
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-dice mr-2"></i>SPIN THE WHEEL';
+            }
+        }
+
         document.getElementById('spinButton').addEventListener('click', function() {
-            if (isSpinning) return;
+            if (isSpinning || !canUserSpin()) return;
             
             isSpinning = true;
             const wheel = document.getElementById('bonusWheel');
@@ -365,6 +442,9 @@
             const result = document.getElementById('spinResult');
             const wheelIcon = document.getElementById('wheelIcon');
             const wheelText = document.getElementById('wheelText');
+            
+            // Set last spin time immediately to prevent multiple spins
+            setLastSpinTime();
             
             // Disable button and show spinning
             button.disabled = true;
@@ -374,27 +454,57 @@
             // Hide previous result
             result.classList.add('hidden');
             
+            // Reset wheel display during spin
+            wheelIcon.textContent = '🎰';
+            wheelText.textContent = 'Spinning...';
+            
             // Simulate spinning for 3 seconds
             setTimeout(() => {
                 // Stop spinning
                 wheel.classList.remove('spin');
                 
-                // Pick random bonus
-                const randomBonus = bonuses[Math.floor(Math.random() * bonuses.length)];
+                // 70% chance to win
+                const isWinner = Math.random() < 0.7;
                 
-                // Update wheel display
-                wheelIcon.textContent = randomBonus.icon;
-                wheelText.textContent = 'You Won!';
-                wheelText.classList.add('bounce');
+                if (isWinner) {
+                    // Pick random bonus
+                    const randomBonus = bonuses[Math.floor(Math.random() * bonuses.length)];
+                    
+                    // Store the winning result
+                    storeWinningResult(randomBonus);
+                    
+                    // Update wheel display
+                    wheelIcon.textContent = randomBonus.icon;
+                    wheelText.textContent = 'You Won!';
+                    wheelText.classList.add('bounce');
+                    
+                    // Show result
+                    document.getElementById('resultText').textContent = randomBonus.text;
+                    document.getElementById('resultSubtext').textContent = `${randomBonus.subtext} Code: ${randomBonus.code}`;
+                    result.classList.remove('hidden');
+                    
+                    // Update button for claiming
+                    button.innerHTML = '<i class="fas fa-gift mr-2"></i>CLAIM AT DREAMBET';
+                    button.onclick = function() {
+                        window.open('casino-dreambet.html', '_blank');
+                    };
+                    
+                } else {
+                    // User didn't win
+                    wheelIcon.textContent = '😔';
+                    wheelText.textContent = 'Try Again Tomorrow!';
+                    
+                    // Show losing result
+                    document.getElementById('resultText').textContent = 'Better Luck Next Time!';
+                    document.getElementById('resultSubtext').textContent = 'Come back in 24 hours for another spin';
+                    result.classList.remove('hidden');
+                    
+                    // Update button with countdown
+                    const timeLeft = getTimeUntilNextSpin();
+                    button.innerHTML = `<i class="fas fa-clock mr-2"></i>Next spin in 24h`;
+                }
                 
-                // Show result
-                document.getElementById('resultText').textContent = randomBonus.text;
-                document.getElementById('resultSubtext').textContent = randomBonus.subtext;
-                result.classList.remove('hidden');
-                
-                // Reset button
-                button.disabled = false;
-                button.innerHTML = '<i class="fas fa-dice mr-2"></i>SPIN AGAIN';
+                button.disabled = true;
                 isSpinning = false;
                 
                 // Remove bounce animation after it completes
@@ -403,6 +513,25 @@
                 }, 1000);
                 
             }, 3000);
+        });
+
+        // Initialize wheel on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWheel();
+            
+            // Update countdown every minute
+            setInterval(() => {
+                if (!canUserSpin()) {
+                    const timeLeft = getTimeUntilNextSpin();
+                    if (timeLeft) {
+                        const button = document.getElementById('spinButton');
+                        button.innerHTML = `<i class="fas fa-clock mr-2"></i>Next spin in ${timeLeft}`;
+                    } else {
+                        // Time is up, reinitialize
+                        initializeWheel();
+                    }
+                }
+            }, 60000); // Update every minute
         });
 
         // Add some interactive hover effects
@@ -415,6 +544,24 @@
                 this.style.transform = 'translateY(0)';
             });
         });
+
+        // Expose function for DreamBet.io to check for unclaimed bonuses
+        window.getDreamBetBonus = function() {
+            const winData = localStorage.getItem('dreambet_winning_bonus');
+            return winData ? JSON.parse(winData) : null;
+        };
+
+        // Function for DreamBet.io to mark bonus as claimed
+        window.markBonusAsClaimed = function() {
+            const winData = localStorage.getItem('dreambet_winning_bonus');
+            if (winData) {
+                const bonus = JSON.parse(winData);
+                bonus.claimed = true;
+                localStorage.setItem('dreambet_winning_bonus', JSON.stringify(bonus));
+                return true;
+            }
+            return false;
+        };
     </script>
 </body>
 </html>
