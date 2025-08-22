@@ -50,34 +50,36 @@ function generateCasinoHTML(casino) {
     </div>`;
 }
 
-// Function to generate bonus HTML
+// Function to generate bonus HTML (matching casino section style)
 function generateBonusHTML(casino) {
     return `
-    <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
-        <div class="flex items-center mb-4">
-            <div class="w-16 h-16 bg-${casino.color} rounded-lg flex-shrink-0 flex items-center justify-center mr-4">
-                <i class="${casino.icon.startsWith('fa-') ? 'fas ' + casino.icon : 'fab fa-' + casino.icon} text-white text-2xl"></i>
-            </div>
-            <div class="flex-1">
-                <h3 class="text-xl font-bold text-gray-900">${casino.name}</h3>
-                <div class="flex items-center">
-                    ${Array(5).fill().map((_, i) => 
-                        `<i class="fas fa-star ${i < Math.floor(casino.rating) ? 'text-yellow-400' : 'text-gray-300'} text-sm"></i>`
-                    ).join('')}
-                    <span class="ml-2 text-sm text-gray-600">${casino.rating}/5</span>
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-${casino.color} rounded-lg mr-4 flex items-center justify-center">
+                    <i class="${casino.icon.startsWith('fa-') ? 'fas ' + casino.icon : 'fab fa-' + casino.icon} text-white"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">${casino.name}</h2>
+                    <div class="flex items-center">
+                        ${Array(5).fill().map((_, i) => 
+                            `<i class="fas fa-star ${i < Math.floor(casino.rating) ? 'text-yellow-400' : 'text-gray-300'}"></i>`
+                        ).join('')}
+                        <span class="ml-2 text-gray-600">${casino.rating.toFixed(1)}/5</span>
+                    </div>
                 </div>
             </div>
             <div class="text-right">
-                <div class="text-xl font-bold text-blue-600">${casino.bonus}</div>
-                <div class="text-sm text-gray-500">Bonus</div>
+                <div class="text-2xl font-bold text-green-600">${casino.bonus}</div>
+                <div class="text-sm text-gray-600">Welcome Bonus</div>
             </div>
         </div>
-        <div class="flex flex-col sm:flex-row gap-2 mt-4">
-            <a href="casino-${casino.id}.html" class="bg-blue-100 hover:bg-blue-200 text-blue-700 font-medium py-2 px-4 rounded text-center text-sm transition-colors">
-                View Details
+        <div class="flex flex-col sm:flex-row gap-3 mt-4">
+            <a href="casino-${casino.id}.html" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg text-center transition-colors">
+                Read Full Review
             </a>
-            <a href="#" class="bg-green-100 hover:bg-green-200 text-green-700 font-medium py-2 px-4 rounded text-center text-sm transition-colors">
-                Claim Now
+            <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-6 rounded-lg text-center transition-colors">
+                Claim Bonus
             </a>
         </div>
     </div>`;
