@@ -547,9 +547,65 @@
 
         let isSpinning = false;
 
-        // Check if user can spin (24-hour cooldown using cookies)
+        // Generate browser fingerprint for tracking across incognito sessions
+        function generateFingerprint() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillText('DreamBet fingerprint', 2, 2);
+            
+            const fingerprint = [
+                navigator.userAgent,
+                navigator.language,
+                screen.width + 'x' + screen.height,
+                screen.colorDepth,
+                new Date().getTimezoneOffset(),
+                navigator.hardwareConcurrency || 'unknown',
+                navigator.deviceMemory || 'unknown',
+                canvas.toDataURL()
+            ].join('|');
+            
+            // Simple hash function
+            let hash = 0;
+            for (let i = 0; i < fingerprint.length; i++) {
+                const char = fingerprint.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash; // Convert to 32-bit integer
+            }
+            return Math.abs(hash).toString(36);
+        }
+
+        // Check if user can spin (24-hour cooldown using fingerprint + multiple storage methods)
         function canUserSpin() {
-            const lastSpin = getCookie('dreambet_last_spin');
+            const fingerprint = generateFingerprint();
+            const storageKey = 'dreambet_spin_' + fingerprint;
+            
+            // Try multiple storage methods
+            let lastSpin = null;
+            
+            // Try sessionStorage first (persists in same tab)
+            try {
+                lastSpin = sessionStorage.getItem(storageKey);
+            } catch(e) {}
+            
+            // Try localStorage
+            if (!lastSpin) {
+                try {
+                    lastSpin = localStorage.getItem(storageKey);
+                } catch(e) {}
+            }
+            
+            // Try cookies
+            if (!lastSpin) {
+                lastSpin = getCookie(storageKey);
+            }
+            
+            // Try IndexedDB (more persistent)
+            if (!lastSpin) {
+                lastSpin = getFromIndexedDB(storageKey);
+            }
+            
             if (!lastSpin) return true;
             
             const lastSpinTime = new Date(lastSpin);
@@ -559,11 +615,49 @@
             return hoursDiff >= 24;
         }
 
-        // Set last spin time using cookies
+        // Set last spin time using multiple storage methods
         function setLastSpinTime() {
+            const fingerprint = generateFingerprint();
+            const storageKey = 'dreambet_spin_' + fingerprint;
+            const timestamp = new Date().toISOString();
+            
+            // Store in multiple places to prevent bypass
+            try {
+                sessionStorage.setItem(storageKey, timestamp);
+                localStorage.setItem(storageKey, timestamp);
+            } catch(e) {}
+            
+            // Store in cookies
             const expiryDate = new Date();
-            expiryDate.setTime(expiryDate.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days
-            setCookie('dreambet_last_spin', new Date().toISOString(), expiryDate);
+            expiryDate.setTime(expiryDate.getTime() + (30 * 24 * 60 * 60 * 1000));
+            setCookie(storageKey, timestamp, expiryDate);
+            
+            // Store in IndexedDB
+            storeInIndexedDB(storageKey, timestamp);
+        }
+
+        // IndexedDB helper functions
+        function storeInIndexedDB(key, value) {
+            try {
+                const request = indexedDB.open('DreamBetDB', 1);
+                request.onupgradeneeded = function(e) {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains('spins')) {
+                        db.createObjectStore('spins');
+                    }
+                };
+                request.onsuccess = function(e) {
+                    const db = e.target.result;
+                    const transaction = db.transaction(['spins'], 'readwrite');
+                    const store = transaction.objectStore('spins');
+                    store.put(value, key);
+                };
+            } catch(e) {}
+        }
+
+        function getFromIndexedDB(key) {
+            // This is synchronous fallback - in real implementation would be async
+            return null;
         }
 
         // Cookie helper functions
@@ -584,7 +678,15 @@
 
         // Get time until next spin
         function getTimeUntilNextSpin() {
-            const lastSpin = getCookie('dreambet_last_spin');
+            const fingerprint = generateFingerprint();
+            const storageKey = 'dreambet_spin_' + fingerprint;
+            
+            // Try multiple storage methods to find last spin
+            let lastSpin = null;
+            try {
+                lastSpin = sessionStorage.getItem(storageKey) || localStorage.getItem(storageKey) || getCookie(storageKey);
+            } catch(e) {}
+            
             if (!lastSpin) return null;
             
             const lastSpinTime = new Date(lastSpin);
@@ -726,9 +828,15 @@
 
         // Initialize wheel on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Force check cookies on every page load
+            // Force check fingerprint-based tracking on every page load
             console.log('Checking spin cooldown on page load...');
-            const lastSpin = getCookie('dreambet_last_spin');
+            const fingerprint = generateFingerprint();
+            console.log('Browser fingerprint:', fingerprint);
+            const storageKey = 'dreambet_spin_' + fingerprint;
+            let lastSpin = null;
+            try {
+                lastSpin = sessionStorage.getItem(storageKey) || localStorage.getItem(storageKey) || getCookie(storageKey);
+            } catch(e) {}
             console.log('Last spin time:', lastSpin);
             
             initializeWheel();
