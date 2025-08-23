@@ -191,7 +191,7 @@
                 <button onclick="showCalculator('bonus')" id="bonus-tab" class="calculator-tab active px-6 py-3 rounded-lg font-medium transition-colors">
                     <i class="fas fa-calculator mr-2"></i>Bonus Calculator
                 </button>
-                <button onclick="showCalculator('finder')" id="finder-tab" class="calculator-tab px-6 py-3 rounded-lg font-medium transition-colors">
+                <button onclick="showCalculator('casino-finder')" id="casino-finder-tab" class="calculator-tab px-6 py-3 rounded-lg font-medium transition-colors">
                     <i class="fas fa-search mr-2"></i>Casino Finder
                 </button>
                 <button onclick="showCalculator('rtp')" id="rtp-tab" class="calculator-tab px-6 py-3 rounded-lg font-medium transition-colors">
@@ -526,12 +526,144 @@
 
         <div id="rtp-calculator" class="calculator-section hidden">
             <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-                <div class="text-center">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">RTP Calculator</h2>
-                    <p class="text-lg text-gray-600 mb-8">Coming Soon - Calculate expected losses based on RTP</p>
-                    <div class="bg-green-50 p-8 rounded-lg">
-                        <i class="fas fa-chart-line text-4xl text-green-600 mb-4"></i>
-                        <p class="text-green-700">Advanced RTP analysis tool is being developed.</p>
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">RTP Comparison Calculator</h2>
+                    <p class="text-lg text-gray-600 mb-6">Compare slot RTPs and calculate expected losses over time</p>
+                    
+                    <!-- Quick Example -->
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 mb-6">
+                        <p class="text-sm text-gray-700">
+                            <strong>Example:</strong> $1,000 wagered on 96% RTP slot = $40 expected loss vs 94% RTP = $60 expected loss
+                        </p>
+                        <button onclick="loadRTPExample()" class="mt-2 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
+                            Try This Example
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- RTP Calculator Form -->
+                    <div class="space-y-6">
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Total Wagering Amount ($)
+                                <span class="text-blue-600 cursor-help" title="Total amount you plan to wager">ℹ️</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                                <input type="number" id="rtp-wagering" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="1000" min="1" value="1000">
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Number of Spins
+                                <span class="text-blue-600 cursor-help" title="Estimated number of spins you'll play">ℹ️</span>
+                            </label>
+                            <input type="number" id="rtp-spins" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="1000" min="1" value="1000">
+                        </div>
+                        
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Average Bet Per Spin ($)
+                                <span class="text-blue-600 cursor-help" title="Your average bet amount per spin">ℹ️</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                                <input type="number" id="rtp-bet-size" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="1.00" min="0.01" step="0.01" value="1.00">
+                            </div>
+                        </div>
+
+                        <!-- Slot Comparison -->
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Compare Two Slots</h3>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Slot A RTP (%)</label>
+                                    <input type="number" id="rtp-slot-a" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="96.0" min="80" max="99" step="0.1" value="96.0">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Slot B RTP (%)</label>
+                                    <input type="number" id="rtp-slot-b" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="94.0" min="80" max="99" step="0.1" value="94.0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button onclick="calculateRTP()" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                <i class="fas fa-calculator mr-2"></i>Calculate RTP Comparison
+                            </button>
+                            <button onclick="resetRTPCalculator()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                                <i class="fas fa-undo mr-2"></i>Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- RTP Results -->
+                    <div id="rtp-results" class="bg-gradient-to-br from-gray-50 to-green-50 rounded-lg p-6 hidden">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">
+                            <i class="fas fa-chart-bar text-green-600 mr-2"></i>RTP Comparison Results
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <!-- Slot A Results -->
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+                                <h4 class="font-semibold text-gray-900 mb-2">Slot A (<span id="rtp-a-percent">96.0</span>% RTP)</h4>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <span class="text-gray-600">Expected Return:</span>
+                                        <div class="font-bold text-green-600">$<span id="rtp-a-return">960</span></div>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Expected Loss:</span>
+                                        <div class="font-bold text-red-600">$<span id="rtp-a-loss">40</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slot B Results -->
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-purple-500">
+                                <h4 class="font-semibold text-gray-900 mb-2">Slot B (<span id="rtp-b-percent">94.0</span>% RTP)</h4>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div>
+                                        <span class="text-gray-600">Expected Return:</span>
+                                        <div class="font-bold text-green-600">$<span id="rtp-b-return">940</span></div>
+                                    </div>
+                                    <div>
+                                        <span class="text-gray-600">Expected Loss:</span>
+                                        <div class="font-bold text-red-600">$<span id="rtp-b-loss">60</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comparison -->
+                            <div class="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                                <h4 class="font-semibold text-gray-900 mb-2">💡 Comparison</h4>
+                                <div class="text-sm text-gray-700">
+                                    <p>Difference in expected loss: <span class="font-bold text-red-600">$<span id="rtp-difference">20</span></span></p>
+                                    <p class="mt-1">Slot A saves you <span class="font-bold text-green-600"><span id="rtp-savings-percent">33.3</span>%</span> compared to Slot B</p>
+                                </div>
+                            </div>
+
+                            <!-- Playing Time Estimate -->
+                            <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                                <h4 class="font-semibold text-gray-900 mb-2">⏱️ Playing Time Estimate</h4>
+                                <div class="text-sm text-gray-700">
+                                    <p>At <span id="rtp-spins-display">1000</span> spins: <span class="font-bold"><span id="rtp-time-estimate">33</span> minutes</span></p>
+                                    <p class="text-xs text-gray-500 mt-1">*Based on 30 spins per minute average</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3 mt-6">
+                            <button onclick="shareRTPResults()" class="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm">
+                                <i class="fas fa-share mr-2"></i>Share Results
+                            </button>
+                            <button onclick="saveRTPCalculation()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                                <i class="fas fa-save mr-2"></i>Save Calculation
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -821,6 +953,451 @@
             // Initialize casino quiz
             new CasinoQuiz();
         });
+
+        // Casino Quiz Class
+        class CasinoQuiz {
+            constructor() {
+                this.currentQuestion = 1;
+                this.totalQuestions = 3;
+                this.answers = {};
+                this.casinos = {
+                    dreambet: {
+                        name: 'DreamBet.io',
+                        logo: 'images/dreambet.png',
+                        bonus: '$1,000,000 Welcome Bonus',
+                        rating: '4.7/5',
+                        features: ['Massive Welcome Bonus', 'VIP Rewards', 'Daily Spins'],
+                        strengths: ['welcome', 'vip', 'high'],
+                        gameTypes: ['slots', 'live', 'both', 'variety'],
+                        link: 'casino-dreambet.html'
+                    },
+                    stake: {
+                        name: 'Stake.com',
+                        logo: 'images/stake.png',
+                        bonus: '200% up to $1,000',
+                        rating: '4.8/5',
+                        features: ['Crypto Friendly', 'Sports Betting', 'Live Streaming'],
+                        strengths: ['welcome', 'variety', 'medium', 'high'],
+                        gameTypes: ['slots', 'live', 'both', 'variety'],
+                        link: 'casino-stake.html'
+                    },
+                    betmgm: {
+                        name: 'BetMGM Casino',
+                        logo: 'images/betmgm-logo.png',
+                        bonus: '$1,000 Deposit Match',
+                        rating: '4.6/5',
+                        features: ['Licensed in US', 'MGM Rewards', 'Live Dealer'],
+                        strengths: ['welcome', 'live', 'medium', 'high'],
+                        gameTypes: ['slots', 'live', 'both', 'variety'],
+                        link: 'casino-betmgm.html'
+                    },
+                    betway: {
+                        name: 'Betway Casino',
+                        logo: 'images/betway-logo.png',
+                        bonus: '$1,000 Welcome Package',
+                        rating: '4.5/5',
+                        features: ['Sports & Casino', 'eCOGRA Certified', 'Mobile App'],
+                        strengths: ['welcome', 'variety', 'medium'],
+                        gameTypes: ['slots', 'live', 'both', 'variety'],
+                        link: 'casino-betway.html'
+                    },
+                    leovegas: {
+                        name: 'LeoVegas',
+                        logo: 'images/leovegas.png',
+                        bonus: 'Up to $1,000 + 200 Spins',
+                        rating: '4.7/5',
+                        features: ['Mobile Gaming King', 'Live Casino', 'Fast Payouts'],
+                        strengths: ['welcome', 'freespins', 'live', 'medium'],
+                        gameTypes: ['slots', 'live', 'both'],
+                        link: 'casino-leovegas.html'
+                    },
+                    casino888: {
+                        name: '888 Casino',
+                        logo: 'images/888.png',
+                        bonus: '$888 Free Play',
+                        rating: '4.4/5',
+                        features: ['No Deposit Bonus', 'Exclusive Games', 'VIP Club'],
+                        strengths: ['nodeposit', 'freespins', 'vip', 'low', 'medium'],
+                        gameTypes: ['slots', 'live', 'both'],
+                        link: 'casino-888.html'
+                    },
+                    casumo: {
+                        name: 'Casumo',
+                        logo: 'images/casumo.png',
+                        bonus: 'Up to $300 + 20 Spins',
+                        rating: '4.6/5',
+                        features: ['Gamified Experience', 'Adventure Rewards', 'Trophies'],
+                        strengths: ['freespins', 'lowwager', 'medium'],
+                        gameTypes: ['slots', 'variety'],
+                        link: 'casino-casumo.html'
+                    },
+                    rizk: {
+                        name: 'Rizk Casino',
+                        logo: 'images/rizk.png',
+                        bonus: 'Up to $100 + 50 Spins',
+                        rating: '4.3/5',
+                        features: ['Wheel of Rizk', 'No Wagering Spins', 'Fast Withdrawals'],
+                        strengths: ['freespins', 'lowwager', 'cashback', 'low', 'medium'],
+                        gameTypes: ['slots', 'variety'],
+                        link: 'casino-rizk.html'
+                    },
+                    wildz: {
+                        name: 'Wildz Casino',
+                        logo: 'images/wildz.png',
+                        bonus: 'Up to $500 + 200 Free Spins',
+                        rating: '4.5/5',
+                        features: ['Spinback Rewards', 'Level Up System', 'Mobile Optimized'],
+                        strengths: ['freespins', 'cashback', 'medium'],
+                        gameTypes: ['slots', 'variety'],
+                        link: 'casino-wildz.html'
+                    },
+                    thunderkick: {
+                        name: 'Thunderkick Casino',
+                        logo: 'images/thunderkick.png',
+                        bonus: '$1,000 + 200 Free Spins',
+                        rating: '4.4/5',
+                        features: ['Unique Slots', 'High RTP Games', 'Innovation Focus'],
+                        strengths: ['freespins', 'welcome', 'medium'],
+                        gameTypes: ['slots', 'variety'],
+                        link: 'casino-thunderkick.html'
+                    }
+                };
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                // Start quiz button
+                document.getElementById('startQuizBtn').addEventListener('click', () => {
+                    this.startQuiz();
+                });
+
+                // Quiz option buttons
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('quiz-option') || e.target.closest('.quiz-option')) {
+                        const button = e.target.classList.contains('quiz-option') ? e.target : e.target.closest('.quiz-option');
+                        this.selectOption(button);
+                    }
+                });
+
+                // Navigation buttons
+                document.getElementById('nextBtn').addEventListener('click', () => {
+                    this.nextQuestion();
+                });
+
+                document.getElementById('prevBtn').addEventListener('click', () => {
+                    this.prevQuestion();
+                });
+
+                // Retake quiz button
+                document.getElementById('retakeQuizBtn').addEventListener('click', () => {
+                    this.resetQuiz();
+                });
+            }
+
+            startQuiz() {
+                document.getElementById('quizStart').classList.add('hidden');
+                document.getElementById('quizQuestions').classList.remove('hidden');
+                document.getElementById('quizNavigation').classList.remove('hidden');
+                this.showQuestion(1);
+                this.updateProgress();
+            }
+
+            showQuestion(questionNum) {
+                // Hide all questions
+                document.querySelectorAll('.quiz-question').forEach(q => {
+                    q.classList.add('hidden');
+                });
+
+                // Show current question
+                const currentQ = document.querySelector(`[data-question="${questionNum}"]`);
+                currentQ.classList.remove('hidden');
+
+                // Update navigation
+                document.getElementById('prevBtn').classList.toggle('hidden', questionNum === 1);
+                document.getElementById('nextBtn').classList.toggle('hidden', !this.answers[questionNum]);
+
+                // Restore selection if exists
+                if (this.answers[questionNum]) {
+                    const selectedOption = currentQ.querySelector(`[data-value="${this.answers[questionNum]}"]`);
+                    if (selectedOption) {
+                        selectedOption.classList.remove('border-white', 'border-opacity-30');
+                        selectedOption.classList.add('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+                        document.getElementById('nextBtn').classList.remove('hidden');
+                    }
+                }
+            }
+
+            selectOption(button) {
+                const question = button.closest('.quiz-question');
+                const questionNum = parseInt(question.dataset.question);
+                const value = button.dataset.value;
+
+                // Remove previous selection
+                question.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+                    opt.classList.add('border-white', 'border-opacity-30');
+                });
+
+                // Highlight selected option
+                button.classList.remove('border-white', 'border-opacity-30');
+                button.classList.add('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+
+                // Store answer
+                this.answers[questionNum] = value;
+
+                // Show next button
+                document.getElementById('nextBtn').classList.remove('hidden');
+            }
+
+            nextQuestion() {
+                if (this.currentQuestion < this.totalQuestions) {
+                    this.currentQuestion++;
+                    this.showQuestion(this.currentQuestion);
+                    this.updateProgress();
+                    document.getElementById('nextBtn').classList.add('hidden');
+                } else {
+                    this.showResults();
+                }
+            }
+
+            prevQuestion() {
+                if (this.currentQuestion > 1) {
+                    this.currentQuestion--;
+                    this.showQuestion(this.currentQuestion);
+                    this.updateProgress();
+                }
+            }
+
+            updateProgress() {
+                const progress = (this.currentQuestion / this.totalQuestions) * 100;
+                document.getElementById('progressFill').style.width = `${progress}%`;
+                document.getElementById('currentQuestion').textContent = this.currentQuestion;
+            }
+
+            calculateRecommendations() {
+                const gameType = this.answers[1];
+                const bonusType = this.answers[2];
+                const budget = this.answers[3];
+
+                let scores = {};
+
+                // Calculate scores for each casino
+                Object.keys(this.casinos).forEach(casinoKey => {
+                    const casino = this.casinos[casinoKey];
+                    let score = 0;
+
+                    // Game type matching (40% weight)
+                    if (casino.gameTypes.includes(gameType)) {
+                        score += 40;
+                    }
+
+                    // Bonus type matching (35% weight)
+                    if (casino.strengths.includes(bonusType)) {
+                        score += 35;
+                    }
+
+                    // Budget matching (25% weight)
+                    if (casino.strengths.includes(budget)) {
+                        score += 25;
+                    }
+
+                    scores[casinoKey] = score;
+                });
+
+                // Sort by score and return top 3
+                const sortedCasinos = Object.keys(scores)
+                    .sort((a, b) => scores[b] - scores[a])
+                    .slice(0, 3)
+                    .map(key => ({ key, ...this.casinos[key], score: scores[key] }));
+
+                return sortedCasinos;
+            }
+
+            showResults() {
+                document.getElementById('quizQuestions').classList.add('hidden');
+                document.getElementById('quizNavigation').classList.add('hidden');
+                document.getElementById('quizResults').classList.remove('hidden');
+
+                const recommendations = this.calculateRecommendations();
+                const resultsContainer = document.getElementById('recommendedCasinos');
+
+                resultsContainer.innerHTML = recommendations.map((casino, index) => `
+                    <div class="bg-white bg-opacity-10 rounded-xl p-6 border border-white border-opacity-30">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                ${index === 0 ? '<div class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold mr-3">Top Match</div>' : ''}
+                                <div class="w-12 h-12 bg-white rounded-lg mr-4 flex items-center justify-center">
+                                    <img src="${casino.logo}" alt="${casino.name} Logo" class="w-10 h-10 object-contain">
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold">${casino.name}</h4>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <span class="ml-1 text-sm">${casino.rating}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold">${casino.bonus}</div>
+                                <div class="text-sm opacity-80">Welcome Offer</div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 mb-4 text-sm">
+                            ${casino.features.map(feature => `
+                                <div class="bg-white bg-opacity-10 rounded px-2 py-1 text-center">${feature}</div>
+                            `).join('')}
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="${casino.link}" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg text-center transition-colors">
+                                View Details
+                            </a>
+                            <a href="#" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg text-center transition-colors">
+                                Claim Bonus
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            resetQuiz() {
+                this.currentQuestion = 1;
+                this.answers = {};
+                
+                document.getElementById('quizResults').classList.add('hidden');
+                document.getElementById('quizStart').classList.remove('hidden');
+                
+                // Reset all selections
+                document.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+                    opt.classList.add('border-white', 'border-opacity-30');
+                });
+                
+                // Reset progress
+                document.getElementById('progressFill').style.width = '0%';
+            }
+        }
+
+        // RTP Calculator Functions
+        function calculateRTP() {
+            clearErrors();
+            
+            const wagering = parseFloat(document.getElementById('rtp-wagering').value);
+            const spins = parseInt(document.getElementById('rtp-spins').value);
+            const betSize = parseFloat(document.getElementById('rtp-bet-size').value);
+            const rtpA = parseFloat(document.getElementById('rtp-slot-a').value);
+            const rtpB = parseFloat(document.getElementById('rtp-slot-b').value);
+            
+            // Validation
+            if (!wagering || wagering <= 0) {
+                showError('rtp-wagering', 'Please enter a valid wagering amount');
+                return;
+            }
+            if (!spins || spins <= 0) {
+                showError('rtp-spins', 'Please enter a valid number of spins');
+                return;
+            }
+            if (!betSize || betSize <= 0) {
+                showError('rtp-bet-size', 'Please enter a valid bet size');
+                return;
+            }
+            if (!rtpA || rtpA < 80 || rtpA > 99) {
+                showError('rtp-slot-a', 'RTP must be between 80% and 99%');
+                return;
+            }
+            if (!rtpB || rtpB < 80 || rtpB > 99) {
+                showError('rtp-slot-b', 'RTP must be between 80% and 99%');
+                return;
+            }
+            
+            // Calculate returns and losses
+            const returnA = wagering * (rtpA / 100);
+            const lossA = wagering - returnA;
+            const returnB = wagering * (rtpB / 100);
+            const lossB = wagering - returnB;
+            
+            const difference = Math.abs(lossA - lossB);
+            const savingsPercent = ((lossB - lossA) / lossB * 100);
+            
+            // Calculate playing time (30 spins per minute average)
+            const playingTimeMinutes = Math.round(spins / 30);
+            
+            // Update results
+            document.getElementById('rtp-a-percent').textContent = rtpA.toFixed(1);
+            document.getElementById('rtp-a-return').textContent = returnA.toFixed(2);
+            document.getElementById('rtp-a-loss').textContent = lossA.toFixed(2);
+            
+            document.getElementById('rtp-b-percent').textContent = rtpB.toFixed(1);
+            document.getElementById('rtp-b-return').textContent = returnB.toFixed(2);
+            document.getElementById('rtp-b-loss').textContent = lossB.toFixed(2);
+            
+            document.getElementById('rtp-difference').textContent = difference.toFixed(2);
+            document.getElementById('rtp-savings-percent').textContent = Math.abs(savingsPercent).toFixed(1);
+            
+            document.getElementById('rtp-spins-display').textContent = spins.toLocaleString();
+            document.getElementById('rtp-time-estimate').textContent = playingTimeMinutes;
+            
+            // Show results
+            document.getElementById('rtp-results').classList.remove('hidden');
+        }
+
+        function loadRTPExample() {
+            document.getElementById('rtp-wagering').value = '1000';
+            document.getElementById('rtp-spins').value = '1000';
+            document.getElementById('rtp-bet-size').value = '1.00';
+            document.getElementById('rtp-slot-a').value = '96.0';
+            document.getElementById('rtp-slot-b').value = '94.0';
+            calculateRTP();
+        }
+
+        function resetRTPCalculator() {
+            document.getElementById('rtp-wagering').value = '';
+            document.getElementById('rtp-spins').value = '';
+            document.getElementById('rtp-bet-size').value = '';
+            document.getElementById('rtp-slot-a').value = '';
+            document.getElementById('rtp-slot-b').value = '';
+            document.getElementById('rtp-results').classList.add('hidden');
+            clearErrors();
+        }
+
+        function shareRTPResults() {
+            const wagering = document.getElementById('rtp-wagering').value;
+            const rtpA = document.getElementById('rtp-slot-a').value;
+            const rtpB = document.getElementById('rtp-slot-b').value;
+            const lossA = document.getElementById('rtp-a-loss').textContent;
+            const lossB = document.getElementById('rtp-b-loss').textContent;
+            const difference = document.getElementById('rtp-difference').textContent;
+            
+            const shareText = `RTP Comparison Results:\n💰 Wagering: $${wagering}\n🎰 Slot A (${rtpA}% RTP): $${lossA} loss\n🎰 Slot B (${rtpB}% RTP): $${lossB} loss\n💡 Difference: $${difference}\n\nCompare RTPs: ${window.location.href}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'RTP Comparison Results',
+                    text: shareText
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Results copied to clipboard!');
+                });
+            }
+        }
+
+        function saveRTPCalculation() {
+            const calculation = {
+                wagering: document.getElementById('rtp-wagering').value,
+                spins: document.getElementById('rtp-spins').value,
+                betSize: document.getElementById('rtp-bet-size').value,
+                rtpA: document.getElementById('rtp-slot-a').value,
+                rtpB: document.getElementById('rtp-slot-b').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('lastRTPCalculation', JSON.stringify(calculation));
+            alert('RTP calculation saved! It will be restored when you return.');
+        }
 
         // Debounce function to prevent excessive calculations
         function debounce(func, wait) {
