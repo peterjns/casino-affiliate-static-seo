@@ -718,7 +718,8 @@
             });
             
             // Show selected calculator
-            document.getElementById(type + '-calculator').classList.remove('hidden');
+            const calculatorId = type === 'casino-finder' ? type : type + '-calculator';
+            document.getElementById(calculatorId).classList.remove('hidden');
             
             // Add active class to selected tab
             const activeTab = document.getElementById(type + '-tab');
