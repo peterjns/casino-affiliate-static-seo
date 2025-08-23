@@ -361,15 +361,164 @@
             </div>
         </div>
 
-        <!-- Placeholder for other calculators -->
-        <div id="finder-calculator" class="calculator-section hidden">
+        <!-- Casino Finder Quiz -->
+        <div id="casino-finder" class="calculator-section hidden">
             <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-                <div class="text-center">
+                <div class="text-center mb-8">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">Casino Finder Quiz</h2>
-                    <p class="text-lg text-gray-600 mb-8">Coming Soon - Interactive quiz to find your perfect casino</p>
-                    <div class="bg-blue-50 p-8 rounded-lg">
-                        <i class="fas fa-tools text-4xl text-blue-600 mb-4"></i>
-                        <p class="text-blue-700">This advanced casino finder tool is currently under development.</p>
+                    <p class="text-lg text-gray-600">Find the perfect casino based on your gaming preferences</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 rounded-2xl shadow-2xl p-8 text-white relative overflow-hidden" id="casinoQuiz">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-12 -mb-12"></div>
+                    
+                    <div class="relative z-10">
+                        <!-- Quiz Start Screen -->
+                        <div id="quizStart" class="text-center">
+                            <h3 class="text-4xl font-bold mb-4">🎰 Which Casino is Perfect for You?</h3>
+                            <p class="text-xl mb-8 opacity-90">Answer a few questions to find the best casino for your gaming preferences!</p>
+                            <button id="startQuizBtn" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-full text-xl shadow-lg transform hover:scale-105 transition-all duration-200">
+                                <i class="fas fa-play mr-2"></i>Start Quiz
+                            </button>
+                        </div>
+
+                        <!-- Quiz Questions -->
+                        <div id="quizQuestions" class="hidden">
+                            <!-- Question 1: Gaming Preference -->
+                            <div class="quiz-question" data-question="1">
+                                <div class="text-center mb-8">
+                                    <h3 class="text-2xl font-bold mb-4">What type of games do you prefer?</h3>
+                                    <p class="text-lg opacity-90">Choose your favorite gaming style to get personalized recommendations.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="slots">
+                                        <div class="text-4xl mb-3">🎰</div>
+                                        <div class="text-lg font-semibold mb-2">Slot Machines</div>
+                                        <div class="text-sm opacity-80">Spin to win big jackpots</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="live">
+                                        <div class="text-4xl mb-3">🎲</div>
+                                        <div class="text-lg font-semibold mb-2">Live Casino</div>
+                                        <div class="text-sm opacity-80">Real dealers, real excitement</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="both">
+                                        <div class="text-4xl mb-3">🎯</div>
+                                        <div class="text-lg font-semibold mb-2">Both</div>
+                                        <div class="text-sm opacity-80">I love variety!</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="variety">
+                                        <div class="text-4xl mb-3">🎪</div>
+                                        <div class="text-lg font-semibold mb-2">All Games</div>
+                                        <div class="text-sm opacity-80">Sports, poker, everything</div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Question 2: Bonus Preference -->
+                            <div class="quiz-question hidden" data-question="2">
+                                <div class="text-center mb-8">
+                                    <h3 class="text-2xl font-bold mb-4">What type of bonuses interest you most?</h3>
+                                    <p class="text-lg opacity-90">Select the bonus type that appeals to you the most.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="welcome">
+                                        <div class="text-4xl mb-3">🎁</div>
+                                        <div class="text-lg font-semibold mb-2">Welcome Bonus</div>
+                                        <div class="text-sm opacity-80">Big first deposit match</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="freespins">
+                                        <div class="text-4xl mb-3">🎰</div>
+                                        <div class="text-lg font-semibold mb-2">Free Spins</div>
+                                        <div class="text-sm opacity-80">No deposit and bonus spins</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="cashback">
+                                        <div class="text-4xl mb-3">💎</div>
+                                        <div class="text-lg font-semibold mb-2">Cashback Offers</div>
+                                        <div class="text-sm opacity-80">Get money back on losses</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="lowwager">
+                                        <div class="text-4xl mb-3">⚡</div>
+                                        <div class="text-lg font-semibold mb-2">Low Wagering</div>
+                                        <div class="text-sm opacity-80">Easy bonus terms</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="vip">
+                                        <div class="text-4xl mb-3">👑</div>
+                                        <div class="text-lg font-semibold mb-2">VIP Program</div>
+                                        <div class="text-sm opacity-80">Exclusive rewards and perks</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="nodeposit">
+                                        <div class="text-4xl mb-3">🎁</div>
+                                        <div class="text-lg font-semibold mb-2">No Deposit Bonus</div>
+                                        <div class="text-sm opacity-80">Play without depositing</div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Question 3: Budget Range -->
+                            <div class="quiz-question hidden" data-question="3">
+                                <div class="text-center mb-8">
+                                    <h3 class="text-2xl font-bold mb-4">What's your typical gaming budget?</h3>
+                                    <p class="text-lg opacity-90">This helps us recommend casinos with appropriate limits and bonuses.</p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="low">
+                                        <div class="text-4xl mb-3">🪙</div>
+                                        <div class="text-lg font-semibold mb-2">$10 - $50</div>
+                                        <div class="text-sm opacity-80">Casual player</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="medium">
+                                        <div class="text-4xl mb-3">💵</div>
+                                        <div class="text-lg font-semibold mb-2">$50 - $200</div>
+                                        <div class="text-sm opacity-80">Regular player</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="high">
+                                        <div class="text-4xl mb-3">💰</div>
+                                        <div class="text-lg font-semibold mb-2">$200 - $1,000</div>
+                                        <div class="text-sm opacity-80">Serious player</div>
+                                    </button>
+                                    <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="vip">
+                                        <div class="text-4xl mb-3">💎</div>
+                                        <div class="text-lg font-semibold mb-2">$1,000+</div>
+                                        <div class="text-sm opacity-80">High roller</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quiz Results -->
+                        <div id="quizResults" class="hidden">
+                            <div class="text-center mb-8">
+                                <h3 class="text-3xl font-bold mb-4">🎯 Your Perfect Casino Match!</h3>
+                                <p class="text-lg opacity-90">Based on your preferences, we recommend these top-rated casinos:</p>
+                            </div>
+                            
+                            <div id="recommendedCasinos" class="space-y-4 max-w-4xl mx-auto">
+                                <!-- Results will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="text-center mt-8">
+                                <button id="retakeQuizBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200">
+                                    <i class="fas fa-redo mr-2"></i>Take Quiz Again
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div id="quizNavigation" class="hidden flex justify-between items-center mt-8">
+                            <button id="prevBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 hidden">
+                                <i class="fas fa-arrow-left mr-2"></i>Previous
+                            </button>
+                            <div class="flex-1 text-center">
+                                <div id="progressBar" class="bg-white bg-opacity-20 rounded-full h-2 max-w-xs mx-auto">
+                                    <div id="progressFill" class="bg-yellow-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                                </div>
+                                <div class="text-sm opacity-80 mt-2">Question <span id="currentQuestion">1</span> of 3</div>
+                            </div>
+                            <button id="nextBtn" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium py-3 px-6 rounded-lg transition-all duration-200 hidden">
+                                Next<i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -669,14 +818,8 @@
             showCalculator('bonus');
             loadSavedCalculation();
             
-            // Add real-time calculation on input
-            const inputs = ['deposit-amount', 'bonus-amount', 'wagering-requirement', 'game-type', 'rtp-percentage'];
-            inputs.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('input', debounce(calculateBonus, 1000));
-                }
-            });
+            // Initialize casino quiz
+            new CasinoQuiz();
         });
 
         // Debounce function to prevent excessive calculations
