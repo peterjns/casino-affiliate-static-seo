@@ -396,8 +396,89 @@
         </div>
     </div>
 
-    <!-- Enhanced Footer -->
-    <footer class="bg-gray-900 text-white py-16">
+    <!-- Mini Bonus Calculator Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Calculate Your Casino Bonus Value</h2>
+                <p class="text-xl text-blue-100 mb-8">Instantly calculate wagering requirements and expected losses for any casino bonus</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Calculator Inputs -->
+                    <div class="space-y-6">
+                        <div>
+                            <label for="mini-bonus-amount" class="block text-sm font-medium text-gray-700 mb-2">Bonus Amount ($)</label>
+                            <input type="number" id="mini-bonus-amount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="e.g., 1000" min="1">
+                        </div>
+                        
+                        <div>
+                            <label for="mini-wagering" class="block text-sm font-medium text-gray-700 mb-2">Wagering Requirement (x)</label>
+                            <input type="number" id="mini-wagering" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="e.g., 35" min="1">
+                        </div>
+                        
+                        <div>
+                            <label for="mini-house-edge" class="block text-sm font-medium text-gray-700 mb-2">House Edge (%)</label>
+                            <select id="mini-house-edge" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="2">Slots (2%)</option>
+                                <option value="0.5">Blackjack (0.5%)</option>
+                                <option value="1.4">Roulette (1.4%)</option>
+                                <option value="1.1">Baccarat (1.1%)</option>
+                                <option value="5">Other Games (5%)</option>
+                            </select>
+                        </div>
+                        
+                        <button onclick="calculateMiniBonus()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105">
+                            <i class="fas fa-calculator mr-2"></i>Calculate Bonus Value
+                        </button>
+                    </div>
+                    
+                    <!-- Results -->
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">Calculation Results</h3>
+                        
+                        <div id="mini-results" class="space-y-4 hidden">
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+                                <div class="text-sm text-gray-600">Total Wagering Required</div>
+                                <div class="text-2xl font-bold text-gray-900">$<span id="mini-total-wagering">0</span></div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-red-500">
+                                <div class="text-sm text-gray-600">Expected Loss</div>
+                                <div class="text-2xl font-bold text-red-600">$<span id="mini-expected-loss">0</span></div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4 border-l-4 border-green-500">
+                                <div class="text-sm text-gray-600">Net Bonus Value</div>
+                                <div class="text-2xl font-bold text-green-600">$<span id="mini-net-value">0</span></div>
+                            </div>
+                            
+                            <div class="bg-blue-50 rounded-lg p-4 mt-6">
+                                <div class="text-sm text-blue-800 font-medium mb-2">💡 Recommendation</div>
+                                <div id="mini-recommendation" class="text-sm text-blue-700"></div>
+                            </div>
+                        </div>
+                        
+                        <div id="mini-placeholder" class="text-center text-gray-500 py-12">
+                            <i class="fas fa-calculator text-4xl mb-4 text-gray-300"></i>
+                            <p>Enter bonus details to see calculations</p>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <a href="calculators.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                                <i class="fas fa-arrow-right mr-2"></i>
+                                Use Advanced Calculator Tools
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Main Footer Content -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
@@ -516,5 +597,60 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mini Calculator JavaScript -->
+    <script>
+        function calculateMiniBonus() {
+            const bonusAmount = parseFloat(document.getElementById('mini-bonus-amount').value);
+            const wageringRequirement = parseFloat(document.getElementById('mini-wagering').value);
+            const houseEdge = parseFloat(document.getElementById('mini-house-edge').value);
+            
+            if (!bonusAmount || !wageringRequirement || bonusAmount <= 0 || wageringRequirement <= 0) {
+                alert('Please enter valid bonus amount and wagering requirement');
+                return;
+            }
+            
+            // Calculate results
+            const totalWagering = bonusAmount * wageringRequirement;
+            const expectedLoss = totalWagering * (houseEdge / 100);
+            const netValue = bonusAmount - expectedLoss;
+            
+            // Update display
+            document.getElementById('mini-total-wagering').textContent = totalWagering.toLocaleString();
+            document.getElementById('mini-expected-loss').textContent = expectedLoss.toFixed(2);
+            document.getElementById('mini-net-value').textContent = netValue.toFixed(2);
+            
+            // Generate recommendation
+            let recommendation = '';
+            if (netValue > bonusAmount * 0.7) {
+                recommendation = 'Excellent bonus value! This bonus offers great potential returns with reasonable wagering requirements.';
+            } else if (netValue > bonusAmount * 0.3) {
+                recommendation = 'Good bonus value. The wagering requirements are fair and you should see positive returns.';
+            } else if (netValue > 0) {
+                recommendation = 'Moderate bonus value. Consider if the wagering requirements fit your playing style.';
+            } else {
+                recommendation = 'High wagering requirements. This bonus may not provide good value - consider alternatives.';
+            }
+            
+            document.getElementById('mini-recommendation').textContent = recommendation;
+            
+            // Show results, hide placeholder
+            document.getElementById('mini-results').classList.remove('hidden');
+            document.getElementById('mini-placeholder').classList.add('hidden');
+        }
+        
+        // Auto-calculate on input change
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = ['mini-bonus-amount', 'mini-wagering', 'mini-house-edge'];
+            inputs.forEach(id => {
+                document.getElementById(id).addEventListener('input', function() {
+                    if (document.getElementById('mini-bonus-amount').value && 
+                        document.getElementById('mini-wagering').value) {
+                        setTimeout(calculateMiniBonus, 300);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
