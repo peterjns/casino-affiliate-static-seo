@@ -671,12 +671,148 @@
 
         <div id="bankroll-calculator" class="calculator-section hidden">
             <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
-                <div class="text-center">
+                <div class="text-center mb-8">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">Bankroll Manager</h2>
-                    <p class="text-lg text-gray-600 mb-8">Coming Soon - Professional bankroll management tool</p>
-                    <div class="bg-purple-50 p-8 rounded-lg">
-                        <i class="fas fa-wallet text-4xl text-purple-600 mb-4"></i>
-                        <p class="text-purple-700">Comprehensive bankroll management system in development.</p>
+                    <p class="text-lg text-gray-600 mb-6">Calculate optimal bet sizes and session limits for responsible gambling</p>
+                    
+                    <!-- Quick Example -->
+                    <div class="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-4 mb-6">
+                        <p class="text-sm text-gray-700">
+                            <strong>Example:</strong> $1,000 bankroll → $20 max bet (2% rule) → 50 betting units for safe play
+                        </p>
+                        <button onclick="loadBankrollExample()" class="mt-2 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
+                            Try This Example
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Bankroll Management Form -->
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Total Bankroll ($)
+                                <span class="text-blue-600 cursor-help" title="Your total gambling budget - never bet money you can't afford to lose">ℹ️</span>
+                            </label>
+                            <input type="number" id="bankroll-total" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="1000" min="1" step="0.01">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Risk Level
+                                <span class="text-blue-600 cursor-help" title="Conservative: 1-2% per bet, Moderate: 2-5%, Aggressive: 5-10%">ℹ️</span>
+                            </label>
+                            <select id="bankroll-risk" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="conservative">Conservative (1-2%)</option>
+                                <option value="moderate" selected>Moderate (2-5%)</option>
+                                <option value="aggressive">Aggressive (5-10%)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Session Duration (hours)
+                                <span class="text-blue-600 cursor-help" title="How long do you typically play in one session?">ℹ️</span>
+                            </label>
+                            <input type="number" id="bankroll-session" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="2" min="0.5" max="12" step="0.5">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Game Type
+                                <span class="text-blue-600 cursor-help" title="Different games have different volatility levels">ℹ️</span>
+                            </label>
+                            <select id="bankroll-game" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="slots">Slots (High Volatility)</option>
+                                <option value="blackjack" selected>Blackjack (Low Volatility)</option>
+                                <option value="roulette">Roulette (Medium Volatility)</option>
+                                <option value="poker">Poker (Variable)</option>
+                                <option value="baccarat">Baccarat (Low Volatility)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Win Goal (%)
+                                <span class="text-blue-600 cursor-help" title="Target profit percentage before stopping the session">ℹ️</span>
+                            </label>
+                            <input type="number" id="bankroll-win-goal" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="50" min="10" max="200" step="5">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Loss Limit (%)
+                                <span class="text-blue-600 cursor-help" title="Maximum loss percentage before stopping the session">ℹ️</span>
+                            </label>
+                            <input type="number" id="bankroll-loss-limit" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="20" min="5" max="50" step="5">
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button onclick="calculateBankroll()" class="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                                <i class="fas fa-calculator mr-2"></i>Calculate Bankroll Plan
+                            </button>
+                            <button onclick="resetBankrollCalculator()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                                <i class="fas fa-undo mr-2"></i>Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Display -->
+                    <div id="bankroll-results" class="hidden">
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-200">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">
+                                <i class="fas fa-chart-pie text-blue-600 mr-2"></i>Your Bankroll Plan
+                            </h3>
+                            
+                            <div class="space-y-4">
+                                <div class="bg-white rounded-lg p-4 border border-blue-100">
+                                    <h4 class="font-semibold text-gray-900 mb-2">💰 Betting Guidelines</h4>
+                                    <div class="text-sm text-gray-700">
+                                        <p>Recommended bet size: <span class="font-bold text-blue-600">$<span id="bankroll-bet-size">20</span></span></p>
+                                        <p>Minimum bet size: <span class="font-bold text-green-600">$<span id="bankroll-min-bet">10</span></span></p>
+                                        <p>Maximum bet size: <span class="font-bold text-red-600">$<span id="bankroll-max-bet">50</span></span></p>
+                                        <p class="mt-2">Total betting units: <span class="font-bold"><span id="bankroll-units">50</span> units</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-lg p-4 border border-green-100">
+                                    <h4 class="font-semibold text-gray-900 mb-2">🎯 Session Limits</h4>
+                                    <div class="text-sm text-gray-700">
+                                        <p>Session bankroll: <span class="font-bold text-blue-600">$<span id="bankroll-session-amount">200</span></span></p>
+                                        <p>Win target: <span class="font-bold text-green-600">$<span id="bankroll-win-target">100</span></span></p>
+                                        <p>Loss limit: <span class="font-bold text-red-600">$<span id="bankroll-loss-amount">40</span></span></p>
+                                        <p class="mt-2">Estimated sessions: <span class="font-bold"><span id="bankroll-sessions">5</span> sessions</span></p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white rounded-lg p-4 border border-yellow-100">
+                                    <h4 class="font-semibold text-gray-900 mb-2">⚠️ Risk Assessment</h4>
+                                    <div class="text-sm text-gray-700">
+                                        <p>Risk level: <span class="font-bold" id="bankroll-risk-level">Moderate</span></p>
+                                        <p>Bankroll survival: <span class="font-bold text-green-600"><span id="bankroll-survival">85</span>%</span></p>
+                                        <p>Expected sessions before bust: <span class="font-bold"><span id="bankroll-bust-sessions">20</span></span></p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                                    <h4 class="font-semibold text-gray-900 mb-2">💡 Recommendations</h4>
+                                    <div class="text-sm text-gray-700" id="bankroll-recommendations">
+                                        <p>• Stick to your betting limits religiously</p>
+                                        <p>• Take breaks every hour to reassess</p>
+                                        <p>• Never chase losses by increasing bet size</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex gap-3">
+                                <button onclick="shareBankrollResults()" class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                                    <i class="fas fa-share mr-2"></i>Share Plan
+                                </button>
+                                <button onclick="saveBankrollCalculation()" class="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm">
+                                    <i class="fas fa-save mr-2"></i>Save Plan
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1411,6 +1547,197 @@
                 clearTimeout(timeout);
                 timeout = setTimeout(later, wait);
             };
+        }
+
+        // Bankroll Management Functions
+        function calculateBankroll() {
+            const bankroll = parseFloat(document.getElementById('bankroll-total').value);
+            const riskLevel = document.getElementById('bankroll-risk').value;
+            const sessionHours = parseFloat(document.getElementById('bankroll-session').value);
+            const gameType = document.getElementById('bankroll-game').value;
+            const winGoal = parseFloat(document.getElementById('bankroll-win-goal').value);
+            const lossLimit = parseFloat(document.getElementById('bankroll-loss-limit').value);
+
+            // Validation
+            if (!bankroll || bankroll <= 0) {
+                alert('Please enter a valid bankroll amount');
+                return;
+            }
+            if (!sessionHours || sessionHours <= 0) {
+                alert('Please enter a valid session duration');
+                return;
+            }
+            if (!winGoal || winGoal <= 0) {
+                alert('Please enter a valid win goal percentage');
+                return;
+            }
+            if (!lossLimit || lossLimit <= 0) {
+                alert('Please enter a valid loss limit percentage');
+                return;
+            }
+
+            // Risk level multipliers
+            const riskMultipliers = {
+                conservative: { min: 0.01, max: 0.02, recommended: 0.015 },
+                moderate: { min: 0.02, max: 0.05, recommended: 0.03 },
+                aggressive: { min: 0.05, max: 0.10, recommended: 0.075 }
+            };
+
+            // Game volatility adjustments
+            const gameMultipliers = {
+                slots: 0.8,        // Higher volatility, smaller bets
+                blackjack: 1.2,    // Lower volatility, can bet more
+                roulette: 1.0,     // Medium volatility
+                poker: 0.9,        // Variable, conservative approach
+                baccarat: 1.1      // Low volatility
+            };
+
+            const risk = riskMultipliers[riskLevel];
+            const gameMultiplier = gameMultipliers[gameType];
+
+            // Calculate bet sizes
+            const recommendedBet = Math.round(bankroll * risk.recommended * gameMultiplier);
+            const minBet = Math.round(bankroll * risk.min * gameMultiplier);
+            const maxBet = Math.round(bankroll * risk.max * gameMultiplier);
+            const totalUnits = Math.floor(bankroll / recommendedBet);
+
+            // Calculate session amounts
+            const sessionBankroll = Math.round(bankroll * (sessionHours / 8)); // Assume 8 hours total play time
+            const winTarget = Math.round(sessionBankroll * (winGoal / 100));
+            const lossAmount = Math.round(sessionBankroll * (lossLimit / 100));
+            const estimatedSessions = Math.floor(bankroll / sessionBankroll);
+
+            // Risk assessment calculations
+            const survivalRate = Math.max(60, Math.min(95, 100 - (risk.recommended * 100 * 2)));
+            const bustSessions = Math.round(totalUnits * (survivalRate / 100));
+
+            // Update display
+            document.getElementById('bankroll-bet-size').textContent = recommendedBet;
+            document.getElementById('bankroll-min-bet').textContent = minBet;
+            document.getElementById('bankroll-max-bet').textContent = maxBet;
+            document.getElementById('bankroll-units').textContent = totalUnits;
+
+            document.getElementById('bankroll-session-amount').textContent = sessionBankroll;
+            document.getElementById('bankroll-win-target').textContent = winTarget;
+            document.getElementById('bankroll-loss-amount').textContent = lossAmount;
+            document.getElementById('bankroll-sessions').textContent = estimatedSessions;
+
+            document.getElementById('bankroll-risk-level').textContent = riskLevel.charAt(0).toUpperCase() + riskLevel.slice(1);
+            document.getElementById('bankroll-survival').textContent = Math.round(survivalRate);
+            document.getElementById('bankroll-bust-sessions').textContent = bustSessions;
+
+            // Generate personalized recommendations
+            const recommendations = generateBankrollRecommendations(riskLevel, gameType, totalUnits, survivalRate);
+            document.getElementById('bankroll-recommendations').innerHTML = recommendations.map(rec => `<p>• ${rec}</p>`).join('');
+
+            // Show results
+            document.getElementById('bankroll-results').classList.remove('hidden');
+        }
+
+        function generateBankrollRecommendations(riskLevel, gameType, units, survival) {
+            const recommendations = [];
+            
+            // Risk-based recommendations
+            if (riskLevel === 'conservative') {
+                recommendations.push('Your conservative approach maximizes bankroll longevity');
+                recommendations.push('Consider increasing bet size slightly if you\'re consistently winning');
+            } else if (riskLevel === 'aggressive') {
+                recommendations.push('Monitor your bankroll closely with this aggressive strategy');
+                recommendations.push('Be prepared to reduce bet sizes if losses mount');
+            } else {
+                recommendations.push('Your moderate approach balances risk and reward well');
+                recommendations.push('Adjust bet sizes based on recent performance');
+            }
+
+            // Game-specific recommendations
+            if (gameType === 'slots') {
+                recommendations.push('Slots are high variance - expect significant swings');
+                recommendations.push('Consider lower volatility slots for steadier play');
+            } else if (gameType === 'blackjack') {
+                recommendations.push('Use basic strategy to minimize house edge');
+                recommendations.push('Avoid side bets to maintain low volatility');
+            } else if (gameType === 'poker') {
+                recommendations.push('Bankroll management is crucial in poker');
+                recommendations.push('Move down stakes if you lose 3-4 buy-ins');
+            }
+
+            // Units-based recommendations
+            if (units < 20) {
+                recommendations.push('Your bankroll provides limited protection - consider reducing bet size');
+            } else if (units > 100) {
+                recommendations.push('Excellent bankroll depth - you can weather long losing streaks');
+            }
+
+            // Survival rate recommendations
+            if (survival < 70) {
+                recommendations.push('High risk of ruin - strongly consider more conservative betting');
+            } else if (survival > 90) {
+                recommendations.push('Very safe approach - you could slightly increase bet sizes if desired');
+            }
+
+            // General recommendations
+            recommendations.push('Never gamble with money you can\'t afford to lose');
+            recommendations.push('Take regular breaks to reassess your position');
+            recommendations.push('Set win/loss limits before each session and stick to them');
+
+            return recommendations.slice(0, 6); // Return max 6 recommendations
+        }
+
+        function loadBankrollExample() {
+            document.getElementById('bankroll-total').value = 1000;
+            document.getElementById('bankroll-risk').value = 'moderate';
+            document.getElementById('bankroll-session').value = 2;
+            document.getElementById('bankroll-game').value = 'blackjack';
+            document.getElementById('bankroll-win-goal').value = 50;
+            document.getElementById('bankroll-loss-limit').value = 20;
+            
+            // Auto-calculate after loading example
+            setTimeout(calculateBankroll, 300);
+        }
+
+        function resetBankrollCalculator() {
+            document.getElementById('bankroll-total').value = '';
+            document.getElementById('bankroll-risk').value = 'moderate';
+            document.getElementById('bankroll-session').value = '';
+            document.getElementById('bankroll-game').value = 'blackjack';
+            document.getElementById('bankroll-win-goal').value = '';
+            document.getElementById('bankroll-loss-limit').value = '';
+            document.getElementById('bankroll-results').classList.add('hidden');
+        }
+
+        function shareBankrollResults() {
+            const bankroll = document.getElementById('bankroll-total').value;
+            const betSize = document.getElementById('bankroll-bet-size').textContent;
+            const sessionAmount = document.getElementById('bankroll-session-amount').textContent;
+            const riskLevel = document.getElementById('bankroll-risk-level').textContent;
+            
+            const shareText = `My Bankroll Management Plan:\n💰 Total Bankroll: $${bankroll}\n🎯 Recommended Bet: $${betSize}\n📊 Session Bankroll: $${sessionAmount}\n⚖️ Risk Level: ${riskLevel}\n\nCalculate your plan: ${window.location.href}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Bankroll Management Plan',
+                    text: shareText
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Bankroll plan copied to clipboard!');
+                });
+            }
+        }
+
+        function saveBankrollCalculation() {
+            const calculation = {
+                bankroll: document.getElementById('bankroll-total').value,
+                risk: document.getElementById('bankroll-risk').value,
+                session: document.getElementById('bankroll-session').value,
+                game: document.getElementById('bankroll-game').value,
+                winGoal: document.getElementById('bankroll-win-goal').value,
+                lossLimit: document.getElementById('bankroll-loss-limit').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('lastBankrollCalculation', JSON.stringify(calculation));
+            alert('Bankroll plan saved! It will be restored when you return.');
         }
 
         // Add CSS for tab styling
