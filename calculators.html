@@ -212,72 +212,149 @@
             <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
                 <div class="text-center mb-8">
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">Casino Bonus Wagering Calculator</h2>
-                    <p class="text-lg text-gray-600">Calculate exactly how much you need to wager to clear your casino bonus and withdraw winnings</p>
+                    <p class="text-lg text-gray-600 mb-6">Calculate exactly how much you need to wager to clear your casino bonus and withdraw winnings</p>
+                    
+                    <!-- Quick Example -->
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 mb-6">
+                        <p class="text-sm text-gray-700">
+                            <strong>Example:</strong> $100 deposit + $100 bonus with 35x wagering = $7,000 total wagering required
+                        </p>
+                        <button onclick="loadExample()" class="mt-2 text-blue-600 hover:text-blue-700 text-sm font-medium underline">
+                            Try This Example
+                        </button>
+                    </div>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Calculator Form -->
                     <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Deposit Amount ($)</label>
-                            <input type="number" id="deposit-amount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="100" min="1">
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Deposit Amount ($)
+                                <span class="text-blue-600 cursor-help" title="The amount you plan to deposit">ℹ️</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                                <input type="number" id="deposit-amount" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="100" min="1" value="100">
+                            </div>
                         </div>
                         
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Bonus Amount ($)</label>
-                            <input type="number" id="bonus-amount" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="100" min="0">
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Bonus Amount ($)
+                                <span class="text-blue-600 cursor-help" title="The bonus amount you'll receive">ℹ️</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                                <input type="number" id="bonus-amount" class="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="100" min="0" value="100">
+                            </div>
                         </div>
                         
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Wagering Requirement (x times)</label>
-                            <input type="number" id="wagering-requirement" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="35" min="1">
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Wagering Requirement (x times)
+                                <span class="text-blue-600 cursor-help" title="How many times you must wager the bonus amount">ℹ️</span>
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="wagering-requirement" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="35" min="1" value="35">
+                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">x</span>
+                            </div>
                         </div>
                         
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Game Type</label>
-                            <select id="game-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                <option value="100">Slots (100% contribution)</option>
-                                <option value="10">Table Games (10% contribution)</option>
-                                <option value="5">Live Casino (5% contribution)</option>
-                                <option value="0">Excluded Games (0% contribution)</option>
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Game Type
+                                <span class="text-blue-600 cursor-help" title="Different games contribute different percentages to wagering">ℹ️</span>
+                            </label>
+                            <select id="game-type" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                                <option value="100">🎰 Slots (100% contribution)</option>
+                                <option value="10">🃏 Table Games (10% contribution)</option>
+                                <option value="5">🎲 Live Casino (5% contribution)</option>
+                                <option value="0">❌ Excluded Games (0% contribution)</option>
                             </select>
                         </div>
                         
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Average RTP (%)</label>
-                            <input type="number" id="rtp-percentage" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="96" min="80" max="99" step="0.1">
+                        <div class="relative">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Average RTP (%)
+                                <span class="text-blue-600 cursor-help" title="Return to Player percentage - higher is better for you">ℹ️</span>
+                            </label>
+                            <div class="relative">
+                                <input type="range" id="rtp-slider" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mb-2" min="85" max="99" step="0.1" value="96" oninput="updateRTPValue()">
+                                <input type="number" id="rtp-percentage" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" min="80" max="99" step="0.1" value="96" oninput="updateRTPSlider()">
+                                <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">%</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-gray-500 mt-1">
+                                <span>Low RTP (85%)</span>
+                                <span>High RTP (99%)</span>
+                            </div>
                         </div>
                         
-                        <button onclick="calculateBonus()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                        <button onclick="calculateBonus()" id="calculate-btn" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
                             <i class="fas fa-calculator mr-2"></i>Calculate Wagering Requirements
+                        </button>
+                        
+                        <button onclick="resetCalculator()" class="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-lg font-medium hover:bg-gray-300 transition-all duration-200">
+                            <i class="fas fa-refresh mr-2"></i>Reset Calculator
                         </button>
                     </div>
                     
                     <!-- Results -->
-                    <div id="bonus-results" class="bg-gray-50 rounded-lg p-6 hidden">
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Calculation Results</h3>
+                    <div id="bonus-results" class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6 hidden">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6 text-center">
+                            <i class="fas fa-chart-bar text-blue-600 mr-2"></i>Your Calculation Results
+                        </h3>
+                        
                         <div class="space-y-4">
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600">Total Wagering Required:</span>
-                                <span id="total-wagering" class="font-bold text-lg text-blue-600">$0</span>
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 font-medium">Total Wagering Required:</span>
+                                    <span id="total-wagering" class="font-bold text-xl text-blue-600">$0</span>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600">Expected Losses:</span>
-                                <span id="expected-losses" class="font-bold text-lg text-red-600">$0</span>
+                            
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 font-medium">Expected Losses:</span>
+                                    <span id="expected-losses" class="font-bold text-xl text-red-600">$0</span>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600">Completion Probability:</span>
-                                <span id="completion-probability" class="font-bold text-lg text-green-600">0%</span>
+                            
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 font-medium">Success Probability:</span>
+                                    <div class="flex items-center">
+                                        <div id="probability-bar" class="w-16 h-3 bg-gray-200 rounded-full mr-2">
+                                            <div id="probability-fill" class="h-full bg-green-500 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                        </div>
+                                        <span id="completion-probability" class="font-bold text-lg text-green-600">0%</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600">Estimated Time:</span>
-                                <span id="estimated-time" class="font-bold text-lg text-purple-600">0 hours</span>
+                            
+                            <div class="bg-white rounded-lg p-4 shadow-sm">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600 font-medium">Estimated Time:</span>
+                                    <span id="estimated-time" class="font-bold text-xl text-purple-600">0 hours</span>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-                            <h4 class="font-semibold text-blue-800 mb-2">💡 Pro Tip</h4>
-                            <p id="bonus-tip" class="text-blue-700 text-sm"></p>
+                        <div id="bonus-tip-container" class="mt-6 p-4 rounded-lg">
+                            <h4 class="font-semibold mb-2 flex items-center">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                                <span id="tip-title">Pro Tip</span>
+                            </h4>
+                            <p id="bonus-tip" class="text-sm"></p>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <button onclick="shareResults()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors mr-2">
+                                <i class="fas fa-share mr-2"></i>Share Results
+                            </button>
+                            <button onclick="saveCalculation()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                                <i class="fas fa-save mr-2"></i>Save Calculation
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -373,7 +450,90 @@
             showCalculator('bonus');
         });
 
-        // Bonus Calculator Logic
+        // Enhanced Calculator Functions
+        function loadExample() {
+            document.getElementById('deposit-amount').value = 100;
+            document.getElementById('bonus-amount').value = 100;
+            document.getElementById('wagering-requirement').value = 35;
+            document.getElementById('game-type').value = 100;
+            document.getElementById('rtp-percentage').value = 96;
+            document.getElementById('rtp-slider').value = 96;
+            
+            // Auto-calculate after loading example
+            setTimeout(calculateBonus, 300);
+        }
+
+        function resetCalculator() {
+            document.getElementById('deposit-amount').value = '';
+            document.getElementById('bonus-amount').value = '';
+            document.getElementById('wagering-requirement').value = '';
+            document.getElementById('game-type').value = 100;
+            document.getElementById('rtp-percentage').value = 96;
+            document.getElementById('rtp-slider').value = 96;
+            document.getElementById('bonus-results').classList.add('hidden');
+        }
+
+        function updateRTPValue() {
+            const slider = document.getElementById('rtp-slider');
+            const input = document.getElementById('rtp-percentage');
+            input.value = slider.value;
+        }
+
+        function updateRTPSlider() {
+            const slider = document.getElementById('rtp-slider');
+            const input = document.getElementById('rtp-percentage');
+            slider.value = input.value;
+        }
+
+        function shareResults() {
+            const deposit = document.getElementById('deposit-amount').value;
+            const bonus = document.getElementById('bonus-amount').value;
+            const wagering = document.getElementById('wagering-requirement').value;
+            const totalWagering = document.getElementById('total-wagering').textContent;
+            const expectedLosses = document.getElementById('expected-losses').textContent;
+            
+            const shareText = `Casino Bonus Calculator Results:\n💰 Deposit: $${deposit}\n🎁 Bonus: $${bonus}\n📊 Wagering Required: ${totalWagering}\n📉 Expected Losses: ${expectedLosses}\n\nCalculate your own: ${window.location.href}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Casino Bonus Calculator Results',
+                    text: shareText
+                });
+            } else {
+                navigator.clipboard.writeText(shareText).then(() => {
+                    alert('Results copied to clipboard!');
+                });
+            }
+        }
+
+        function saveCalculation() {
+            const calculation = {
+                deposit: document.getElementById('deposit-amount').value,
+                bonus: document.getElementById('bonus-amount').value,
+                wagering: document.getElementById('wagering-requirement').value,
+                gameType: document.getElementById('game-type').value,
+                rtp: document.getElementById('rtp-percentage').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem('lastCalculation', JSON.stringify(calculation));
+            alert('Calculation saved! It will be restored when you return.');
+        }
+
+        function loadSavedCalculation() {
+            const saved = localStorage.getItem('lastCalculation');
+            if (saved) {
+                const calculation = JSON.parse(saved);
+                document.getElementById('deposit-amount').value = calculation.deposit;
+                document.getElementById('bonus-amount').value = calculation.bonus;
+                document.getElementById('wagering-requirement').value = calculation.wagering;
+                document.getElementById('game-type').value = calculation.gameType;
+                document.getElementById('rtp-percentage').value = calculation.rtp;
+                document.getElementById('rtp-slider').value = calculation.rtp;
+            }
+        }
+
+        // Enhanced Bonus Calculator Logic
         function calculateBonus() {
             const deposit = parseFloat(document.getElementById('deposit-amount').value) || 0;
             const bonus = parseFloat(document.getElementById('bonus-amount').value) || 0;
@@ -381,44 +541,155 @@
             const gameContribution = parseFloat(document.getElementById('game-type').value) || 100;
             const rtp = parseFloat(document.getElementById('rtp-percentage').value) || 96;
 
-            if (deposit <= 0 || wagering <= 0) {
-                alert('Please enter valid deposit amount and wagering requirement.');
+            // Enhanced validation with visual feedback
+            if (deposit <= 0) {
+                showError('deposit-amount', 'Please enter a valid deposit amount');
+                return;
+            }
+            if (wagering <= 0) {
+                showError('wagering-requirement', 'Please enter a valid wagering requirement');
                 return;
             }
 
-            // Calculate total wagering required
-            const totalWagering = (deposit + bonus) * wagering * (100 / gameContribution);
-            
-            // Calculate expected losses based on RTP
-            const expectedLosses = totalWagering * ((100 - rtp) / 100);
-            
-            // Calculate completion probability (simplified)
-            let completionProb = 100;
-            if (expectedLosses > (deposit + bonus) * 0.5) completionProb = 75;
-            if (expectedLosses > (deposit + bonus) * 0.8) completionProb = 50;
-            if (expectedLosses > (deposit + bonus)) completionProb = 25;
-            
-            // Estimate time (assuming 600 spins per hour at $1 average bet)
-            const estimatedTime = totalWagering / 600;
+            // Clear any previous errors
+            clearErrors();
 
-            // Display results
-            document.getElementById('total-wagering').textContent = '$' + totalWagering.toFixed(2);
-            document.getElementById('expected-losses').textContent = '$' + expectedLosses.toFixed(2);
-            document.getElementById('completion-probability').textContent = completionProb + '%';
-            document.getElementById('estimated-time').textContent = estimatedTime.toFixed(1) + ' hours';
+            // Add loading animation
+            const btn = document.getElementById('calculate-btn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Calculating...';
+            btn.disabled = true;
 
-            // Generate tip
-            let tip = '';
-            if (gameContribution < 100) {
-                tip = 'Consider playing slots for 100% wagering contribution to complete requirements faster.';
-            } else if (expectedLosses > bonus * 0.8) {
-                tip = 'This bonus has high wagering requirements. Consider looking for better offers.';
-            } else {
-                tip = 'This bonus looks favorable! Focus on high RTP slots to maximize your chances.';
-            }
-            document.getElementById('bonus-tip').textContent = tip;
+            setTimeout(() => {
+                // Calculate total wagering required
+                const totalWagering = (deposit + bonus) * wagering * (100 / gameContribution);
+                
+                // Calculate expected losses based on RTP
+                const expectedLosses = totalWagering * ((100 - rtp) / 100);
+                
+                // Enhanced completion probability calculation
+                let completionProb = 100;
+                const lossRatio = expectedLosses / (deposit + bonus);
+                if (lossRatio > 0.9) completionProb = 15;
+                else if (lossRatio > 0.7) completionProb = 35;
+                else if (lossRatio > 0.5) completionProb = 60;
+                else if (lossRatio > 0.3) completionProb = 80;
+                else completionProb = 95;
+                
+                // More realistic time estimation
+                const avgBetSize = Math.max(1, (deposit + bonus) / 100);
+                const spinsPerHour = 600;
+                const estimatedTime = totalWagering / (avgBetSize * spinsPerHour);
 
-            document.getElementById('bonus-results').classList.remove('hidden');
+                // Animate results display
+                document.getElementById('total-wagering').textContent = '$' + totalWagering.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('expected-losses').textContent = '$' + expectedLosses.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                document.getElementById('completion-probability').textContent = completionProb + '%';
+                document.getElementById('estimated-time').textContent = estimatedTime.toFixed(1) + ' hours';
+
+                // Animate probability bar
+                const probabilityFill = document.getElementById('probability-fill');
+                probabilityFill.style.width = completionProb + '%';
+                
+                // Color-code probability bar
+                if (completionProb >= 70) {
+                    probabilityFill.className = 'h-full bg-green-500 rounded-full transition-all duration-500';
+                } else if (completionProb >= 40) {
+                    probabilityFill.className = 'h-full bg-yellow-500 rounded-full transition-all duration-500';
+                } else {
+                    probabilityFill.className = 'h-full bg-red-500 rounded-full transition-all duration-500';
+                }
+
+                // Enhanced tip generation
+                let tip = '';
+                let tipTitle = 'Pro Tip';
+                let tipClass = 'bg-blue-50 border border-blue-200';
+
+                if (gameContribution < 100) {
+                    tip = 'Consider playing slots for 100% wagering contribution to complete requirements faster.';
+                    tipTitle = '🎰 Game Selection Tip';
+                } else if (expectedLosses > bonus * 0.8) {
+                    tip = 'This bonus has high wagering requirements. Expected losses are significant - consider looking for better offers.';
+                    tipTitle = '⚠️ High Risk Warning';
+                    tipClass = 'bg-red-50 border border-red-200';
+                } else if (completionProb >= 80) {
+                    tip = 'Excellent bonus! High completion probability with reasonable expected losses. Focus on high RTP slots.';
+                    tipTitle = '✅ Great Bonus';
+                    tipClass = 'bg-green-50 border border-green-200';
+                } else {
+                    tip = 'Moderate bonus terms. Consider your bankroll carefully and stick to high RTP games to maximize your chances.';
+                    tipTitle = '💡 Strategy Tip';
+                }
+
+                document.getElementById('bonus-tip').textContent = tip;
+                document.getElementById('tip-title').textContent = tipTitle;
+                document.getElementById('bonus-tip-container').className = 'mt-6 p-4 rounded-lg ' + tipClass;
+
+                // Show results with animation
+                const resultsDiv = document.getElementById('bonus-results');
+                resultsDiv.classList.remove('hidden');
+                resultsDiv.style.opacity = '0';
+                resultsDiv.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    resultsDiv.style.transition = 'all 0.5s ease-out';
+                    resultsDiv.style.opacity = '1';
+                    resultsDiv.style.transform = 'translateY(0)';
+                }, 100);
+
+                // Reset button
+                btn.innerHTML = '<i class="fas fa-calculator mr-2"></i>Calculate Wagering Requirements';
+                btn.disabled = false;
+            }, 800);
+        }
+
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            field.classList.add('border-red-500');
+            
+            // Remove existing error message
+            const existingError = field.parentNode.querySelector('.error-message');
+            if (existingError) existingError.remove();
+            
+            // Add error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message text-red-500 text-sm mt-1';
+            errorDiv.textContent = message;
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+            document.querySelectorAll('input, select').forEach(el => {
+                el.classList.remove('border-red-500');
+            });
+        }
+
+        // Auto-calculate on input change for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            showCalculator('bonus');
+            loadSavedCalculation();
+            
+            // Add real-time calculation on input
+            const inputs = ['deposit-amount', 'bonus-amount', 'wagering-requirement', 'game-type', 'rtp-percentage'];
+            inputs.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', debounce(calculateBonus, 1000));
+                }
+            });
+        });
+
+        // Debounce function to prevent excessive calculations
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
         }
 
         // Add CSS for tab styling
