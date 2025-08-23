@@ -274,7 +274,7 @@
     <div class="bg-white shadow-sm border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap justify-center gap-4 py-4">
-                <button onclick="showCalculator('bonus')" id="bonus-tab" class="calculator-tab active px-6 py-3 rounded-lg font-medium transition-colors">
+                <button onclick="showCalculator('bonus-calculator')" id="bonus-calculator-tab" class="calculator-tab active px-6 py-3 rounded-lg font-medium transition-colors">
                     <i class="fas fa-calculator mr-2"></i>Bonus Calculator
                 </button>
                 <button onclick="showCalculator('casino-finder')" id="casino-finder-tab" class="calculator-tab px-6 py-3 rounded-lg font-medium transition-colors">
@@ -1929,6 +1929,45 @@
             alert('Bankroll plan saved! It will be restored when you return.');
         }
 
+        // Calculator tab switching functionality
+        function showCalculator(calculatorId) {
+            // Hide all calculator sections
+            const sections = document.querySelectorAll('.calculator-section');
+            sections.forEach(section => section.classList.add('hidden'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.calculator-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected calculator
+            const targetSection = document.getElementById(calculatorId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+            
+            // Add active class to clicked tab
+            const activeTab = document.getElementById(calculatorId + '-tab');
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+
+        // Handle URL hash navigation
+        function handleHashNavigation() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showCalculator(hash);
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            handleHashNavigation();
+            
+            // Listen for hash changes
+            window.addEventListener('hashchange', handleHashNavigation);
+        });
+
         // Add CSS for tab styling
         const style = document.createElement('style');
         style.textContent = `
@@ -1942,6 +1981,12 @@
             .calculator-tab.active {
                 background-color: #2563eb !important;
                 color: white !important;
+            }
+            .calculator-section {
+                display: block;
+            }
+            .calculator-section.hidden {
+                display: none;
             }
         `;
         document.head.appendChild(style);
