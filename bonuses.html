@@ -230,6 +230,176 @@
             </div>
         </div>
 
+        <!-- Casino Quiz -->
+        <div class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 rounded-2xl shadow-2xl p-8 mb-12 text-white relative overflow-hidden" id="casinoQuiz">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-16 -mt-16"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-12 -mb-12"></div>
+            
+            <div class="relative z-10">
+                <!-- Quiz Start Screen -->
+                <div id="quizStart" class="text-center">
+                    <h2 class="text-4xl font-bold mb-4">🎰 Which Casino is Perfect for You?</h2>
+                    <p class="text-xl mb-8 opacity-90">Answer a few questions to find the best casino for your slots and live gaming preferences!</p>
+                    <button id="startQuizBtn" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-4 px-8 rounded-full text-xl shadow-lg transform hover:scale-105 transition-all duration-200">
+                        <i class="fas fa-play mr-2"></i>Start Quiz
+                    </button>
+                </div>
+
+                <!-- Quiz Questions -->
+                <div id="quizQuestions" class="hidden">
+                    <!-- Question 1: Gaming Preference -->
+                    <div class="quiz-question" data-question="1">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">What type of casino games do you prefer most?</h3>
+                            <p class="text-lg opacity-90">Select your primary gaming interest to help us match you with the perfect casino.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-left transition-all duration-200 hover:scale-105" data-value="slots">
+                                <div class="flex items-center">
+                                    <div class="text-4xl mr-4">🎰</div>
+                                    <div>
+                                        <div class="text-xl font-semibold">Slot Games</div>
+                                        <div class="text-sm opacity-80">Video slots, progressive jackpots, classic slots</div>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-left transition-all duration-200 hover:scale-105" data-value="live">
+                                <div class="flex items-center">
+                                    <div class="text-4xl mr-4">🎲</div>
+                                    <div>
+                                        <div class="text-xl font-semibold">Live Casino</div>
+                                        <div class="text-sm opacity-80">Live dealers, blackjack, roulette, baccarat</div>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-left transition-all duration-200 hover:scale-105" data-value="both">
+                                <div class="flex items-center">
+                                    <div class="text-4xl mr-4">🎯</div>
+                                    <div>
+                                        <div class="text-xl font-semibold">Both Equally</div>
+                                        <div class="text-sm opacity-80">I enjoy slots and live casino games</div>
+                                    </div>
+                                </div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-left transition-all duration-200 hover:scale-105" data-value="variety">
+                                <div class="flex items-center">
+                                    <div class="text-4xl mr-4">🎪</div>
+                                    <div>
+                                        <div class="text-xl font-semibold">Game Variety</div>
+                                        <div class="text-sm opacity-80">Maximum game selection and providers</div>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Question 2: Bonus Preference -->
+                    <div class="quiz-question hidden" data-question="2">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">What type of bonus appeals to you most?</h3>
+                            <p class="text-lg opacity-90">Choose the bonus type that would enhance your gaming experience.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="welcome">
+                                <div class="text-4xl mb-3">💰</div>
+                                <div class="text-lg font-semibold mb-2">Large Welcome Bonus</div>
+                                <div class="text-sm opacity-80">Maximum deposit match bonus</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="freespins">
+                                <div class="text-4xl mb-3">🎰</div>
+                                <div class="text-lg font-semibold mb-2">Free Spins</div>
+                                <div class="text-sm opacity-80">No deposit and bonus spins</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="cashback">
+                                <div class="text-4xl mb-3">💎</div>
+                                <div class="text-lg font-semibold mb-2">Cashback Offers</div>
+                                <div class="text-sm opacity-80">Get money back on losses</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="lowwager">
+                                <div class="text-4xl mb-3">⚡</div>
+                                <div class="text-lg font-semibold mb-2">Low Wagering</div>
+                                <div class="text-sm opacity-80">Easy bonus terms</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="vip">
+                                <div class="text-4xl mb-3">👑</div>
+                                <div class="text-lg font-semibold mb-2">VIP Program</div>
+                                <div class="text-sm opacity-80">Exclusive rewards and perks</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="nodeposit">
+                                <div class="text-4xl mb-3">🎁</div>
+                                <div class="text-lg font-semibold mb-2">No Deposit Bonus</div>
+                                <div class="text-sm opacity-80">Play without depositing</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Question 3: Budget Range -->
+                    <div class="quiz-question hidden" data-question="3">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold mb-4">What's your typical gaming budget?</h3>
+                            <p class="text-lg opacity-90">This helps us recommend casinos with appropriate limits and bonuses.</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="low">
+                                <div class="text-4xl mb-3">🪙</div>
+                                <div class="text-lg font-semibold mb-2">$10 - $50</div>
+                                <div class="text-sm opacity-80">Casual player</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="medium">
+                                <div class="text-4xl mb-3">💵</div>
+                                <div class="text-lg font-semibold mb-2">$50 - $200</div>
+                                <div class="text-sm opacity-80">Regular player</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="high">
+                                <div class="text-4xl mb-3">💰</div>
+                                <div class="text-lg font-semibold mb-2">$200 - $1,000</div>
+                                <div class="text-sm opacity-80">Serious player</div>
+                            </button>
+                            <button class="quiz-option bg-white bg-opacity-10 hover:bg-opacity-20 border-2 border-white border-opacity-30 rounded-xl p-6 text-center transition-all duration-200 hover:scale-105" data-value="vip">
+                                <div class="text-4xl mb-3">💎</div>
+                                <div class="text-lg font-semibold mb-2">$1,000+</div>
+                                <div class="text-sm opacity-80">High roller</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div id="quizResults" class="hidden">
+                    <div class="text-center mb-8">
+                        <h3 class="text-3xl font-bold mb-4">🎯 Your Perfect Casino Match!</h3>
+                        <p class="text-lg opacity-90">Based on your preferences, we recommend these top-rated casinos:</p>
+                    </div>
+                    
+                    <div id="recommendedCasinos" class="space-y-4 max-w-4xl mx-auto">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button id="retakeQuizBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200">
+                            <i class="fas fa-redo mr-2"></i>Take Quiz Again
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div id="quizNavigation" class="hidden flex justify-between items-center mt-8">
+                    <button id="prevBtn" class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 hidden">
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </button>
+                    <div class="flex-1 text-center">
+                        <div id="progressBar" class="bg-white bg-opacity-20 rounded-full h-2 max-w-xs mx-auto">
+                            <div id="progressFill" class="bg-yellow-400 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <div class="text-sm opacity-80 mt-2">Question <span id="currentQuestion">1</span> of 3</div>
+                    </div>
+                    <button id="nextBtn" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-medium py-3 px-6 rounded-lg transition-all duration-200 hidden">
+                        Next<i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- All Casino Bonuses -->
         <div class="bg-white rounded-xl shadow-lg p-6 mb-12">
             <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
@@ -646,6 +816,338 @@
     </footer>
 
     <script>
+        // Casino Quiz Functionality
+        class CasinoQuiz {
+            constructor() {
+                this.currentQuestion = 1;
+                this.totalQuestions = 3;
+                this.answers = {};
+                this.casinos = {
+                    dreambet: {
+                        name: 'DreamBet.io',
+                        logo: 'images/dreambet.png',
+                        bonus: '$1,000,000 Welcome Bonus',
+                        rating: '4.7/5',
+                        features: ['Massive Welcome Bonus', 'VIP Rewards', 'Daily Spins'],
+                        strengths: ['welcome', 'vip', 'high'],
+                        gameTypes: ['slots', 'live', 'both', 'variety'],
+                        link: 'casino-dreambet.html'
+                    },
+                    stake: {
+                        name: 'Stake.com',
+                        logo: 'images/stake.png',
+                        bonus: '200% up to $1,000',
+                        rating: '4.8/5',
+                        features: ['Crypto Friendly', 'Live Streaming', 'Sports Betting'],
+                        strengths: ['cashback', 'lowwager', 'medium'],
+                        gameTypes: ['slots', 'live', 'both'],
+                        link: 'casino-stake.html'
+                    },
+                    betmgm: {
+                        name: 'BetMGM Casino',
+                        logo: 'images/mgm.png',
+                        bonus: '$1,000 Welcome Bonus',
+                        rating: '4.6/5',
+                        features: ['Licensed in US', 'Live Dealers', 'Mobile App'],
+                        strengths: ['welcome', 'live', 'medium'],
+                        gameTypes: ['live', 'both'],
+                        link: 'casino-betmgm.html'
+                    },
+                    betway: {
+                        name: 'Betway Casino',
+                        logo: 'images/betway.png',
+                        bonus: '$1,000 Welcome Bonus',
+                        rating: '4.5/5',
+                        features: ['Sports Betting', 'Live Casino', 'Mobile Optimized'],
+                        strengths: ['welcome', 'freespins', 'medium'],
+                        gameTypes: ['slots', 'live', 'both'],
+                        link: 'casino-betway.html'
+                    },
+                    leovegas: {
+                        name: 'LeoVegas',
+                        logo: 'images/leovegas.png',
+                        bonus: 'Up to $1,500 + 200 Free Spins',
+                        rating: '4.7/5',
+                        features: ['Mobile First', 'Live Casino', 'Fast Payouts'],
+                        strengths: ['freespins', 'lowwager', 'medium'],
+                        gameTypes: ['slots', 'live', 'both'],
+                        link: 'casino-leovegas.html'
+                    },
+                    casino888: {
+                        name: '888 Casino',
+                        logo: 'images/888.png',
+                        bonus: '$1,500 Welcome Package',
+                        rating: '4.4/5',
+                        features: ['Established Brand', 'Live Dealers', 'VIP Program'],
+                        strengths: ['welcome', 'vip', 'high'],
+                        gameTypes: ['slots', 'live', 'both'],
+                        link: 'casino-888casino.html'
+                    },
+                    casumo: {
+                        name: 'Casumo',
+                        logo: 'images/casumo.png',
+                        bonus: 'Up to $300 + 20 Free Spins',
+                        rating: '4.6/5',
+                        features: ['Gamified Experience', 'Adventure Rewards', 'Mobile Gaming'],
+                        strengths: ['freespins', 'nodeposit', 'low'],
+                        gameTypes: ['slots', 'variety'],
+                        link: 'casino-casumo.html'
+                    },
+                    rizk: {
+                        name: 'Rizk Casino',
+                        logo: 'images/rizk.png',
+                        bonus: 'Up to $100 + 50 Free Spins',
+                        rating: '4.3/5',
+                        features: ['Wheel of Rizk', 'No Wagering Spins', 'Fast Withdrawals'],
+                        strengths: ['lowwager', 'freespins', 'low'],
+                        gameTypes: ['slots', 'both'],
+                        link: 'casino-rizk.html'
+                    },
+                    wildz: {
+                        name: 'Wildz Casino',
+                        logo: 'images/wildz.png',
+                        bonus: 'Up to $500 + 200 Free Spins',
+                        rating: '4.5/5',
+                        features: ['Spinback Rewards', 'Level Up System', 'Mobile Optimized'],
+                        strengths: ['freespins', 'cashback', 'medium'],
+                        gameTypes: ['slots', 'variety'],
+                        link: 'casino-wildz.html'
+                    },
+                    thunderkick: {
+                        name: 'Thunderkick Casino',
+                        logo: 'images/thunderkick.png',
+                        bonus: '$1,000 + 200 Free Spins',
+                        rating: '4.4/5',
+                        features: ['Unique Slots', 'High RTP Games', 'Innovation Focus'],
+                        strengths: ['freespins', 'welcome', 'medium'],
+                        gameTypes: ['slots', 'variety'],
+                        link: 'casino-thunderkick.html'
+                    }
+                };
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+            }
+
+            bindEvents() {
+                // Start quiz button
+                document.getElementById('startQuizBtn').addEventListener('click', () => {
+                    this.startQuiz();
+                });
+
+                // Quiz option buttons
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('quiz-option') || e.target.closest('.quiz-option')) {
+                        const button = e.target.classList.contains('quiz-option') ? e.target : e.target.closest('.quiz-option');
+                        this.selectOption(button);
+                    }
+                });
+
+                // Navigation buttons
+                document.getElementById('nextBtn').addEventListener('click', () => {
+                    this.nextQuestion();
+                });
+
+                document.getElementById('prevBtn').addEventListener('click', () => {
+                    this.prevQuestion();
+                });
+
+                // Retake quiz button
+                document.getElementById('retakeQuizBtn').addEventListener('click', () => {
+                    this.resetQuiz();
+                });
+            }
+
+            startQuiz() {
+                document.getElementById('quizStart').classList.add('hidden');
+                document.getElementById('quizQuestions').classList.remove('hidden');
+                document.getElementById('quizNavigation').classList.remove('hidden');
+                this.showQuestion(1);
+                this.updateProgress();
+            }
+
+            selectOption(button) {
+                const question = button.closest('.quiz-question');
+                const questionNum = parseInt(question.dataset.question);
+                const value = button.dataset.value;
+
+                // Remove previous selection
+                question.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+                    opt.classList.add('border-white', 'border-opacity-30');
+                });
+
+                // Highlight selected option
+                button.classList.remove('border-white', 'border-opacity-30');
+                button.classList.add('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+
+                // Store answer
+                this.answers[questionNum] = value;
+
+                // Show next button
+                document.getElementById('nextBtn').classList.remove('hidden');
+            }
+
+            nextQuestion() {
+                if (this.currentQuestion < this.totalQuestions) {
+                    this.currentQuestion++;
+                    this.showQuestion(this.currentQuestion);
+                    this.updateProgress();
+                    document.getElementById('nextBtn').classList.add('hidden');
+                } else {
+                    this.showResults();
+                }
+            }
+
+            prevQuestion() {
+                if (this.currentQuestion > 1) {
+                    this.currentQuestion--;
+                    this.showQuestion(this.currentQuestion);
+                    this.updateProgress();
+                }
+            }
+
+            showQuestion(questionNum) {
+                // Hide all questions
+                document.querySelectorAll('.quiz-question').forEach(q => {
+                    q.classList.add('hidden');
+                });
+
+                // Show current question
+                const currentQ = document.querySelector(`[data-question="${questionNum}"]`);
+                currentQ.classList.remove('hidden');
+
+                // Update navigation
+                document.getElementById('prevBtn').classList.toggle('hidden', questionNum === 1);
+                document.getElementById('nextBtn').classList.toggle('hidden', !this.answers[questionNum]);
+
+                // Restore selection if exists
+                if (this.answers[questionNum]) {
+                    const selectedOption = currentQ.querySelector(`[data-value="${this.answers[questionNum]}"]`);
+                    if (selectedOption) {
+                        selectedOption.classList.remove('border-white', 'border-opacity-30');
+                        selectedOption.classList.add('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+                        document.getElementById('nextBtn').classList.remove('hidden');
+                    }
+                }
+            }
+
+            updateProgress() {
+                const progress = (this.currentQuestion / this.totalQuestions) * 100;
+                document.getElementById('progressFill').style.width = `${progress}%`;
+                document.getElementById('currentQuestion').textContent = this.currentQuestion;
+            }
+
+            calculateRecommendations() {
+                const gameType = this.answers[1];
+                const bonusType = this.answers[2];
+                const budget = this.answers[3];
+
+                let scores = {};
+
+                // Calculate scores for each casino
+                Object.keys(this.casinos).forEach(casinoKey => {
+                    const casino = this.casinos[casinoKey];
+                    let score = 0;
+
+                    // Game type matching (40% weight)
+                    if (casino.gameTypes.includes(gameType)) {
+                        score += 40;
+                    }
+
+                    // Bonus type matching (35% weight)
+                    if (casino.strengths.includes(bonusType)) {
+                        score += 35;
+                    }
+
+                    // Budget matching (25% weight)
+                    if (casino.strengths.includes(budget)) {
+                        score += 25;
+                    }
+
+                    scores[casinoKey] = score;
+                });
+
+                // Sort by score and return top 3
+                const sortedCasinos = Object.keys(scores)
+                    .sort((a, b) => scores[b] - scores[a])
+                    .slice(0, 3)
+                    .map(key => ({ key, ...this.casinos[key], score: scores[key] }));
+
+                return sortedCasinos;
+            }
+
+            showResults() {
+                document.getElementById('quizQuestions').classList.add('hidden');
+                document.getElementById('quizNavigation').classList.add('hidden');
+                document.getElementById('quizResults').classList.remove('hidden');
+
+                const recommendations = this.calculateRecommendations();
+                const resultsContainer = document.getElementById('recommendedCasinos');
+
+                resultsContainer.innerHTML = recommendations.map((casino, index) => `
+                    <div class="bg-white bg-opacity-10 rounded-xl p-6 border border-white border-opacity-30">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center">
+                                ${index === 0 ? '<div class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold mr-3">Top Match</div>' : ''}
+                                <div class="w-12 h-12 bg-white rounded-lg mr-4 flex items-center justify-center">
+                                    <img src="${casino.logo}" alt="${casino.name} Logo" class="w-10 h-10 object-contain">
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold">${casino.name}</h4>
+                                    <div class="flex items-center text-yellow-400">
+                                        <i class="fas fa-star"></i>
+                                        <span class="ml-1 text-sm">${casino.rating}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold">${casino.bonus}</div>
+                                <div class="text-sm opacity-80">Welcome Offer</div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 mb-4 text-sm">
+                            ${casino.features.map(feature => `
+                                <div class="bg-white bg-opacity-10 rounded px-2 py-1 text-center">${feature}</div>
+                            `).join('')}
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="${casino.link}" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg text-center transition-colors">
+                                View Details
+                            </a>
+                            <a href="#" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg text-center transition-colors">
+                                Claim Bonus
+                            </a>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            resetQuiz() {
+                this.currentQuestion = 1;
+                this.answers = {};
+                
+                document.getElementById('quizResults').classList.add('hidden');
+                document.getElementById('quizStart').classList.remove('hidden');
+                
+                // Reset all selections
+                document.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.classList.remove('border-yellow-400', 'bg-yellow-400', 'bg-opacity-20');
+                    opt.classList.add('border-white', 'border-opacity-30');
+                });
+                
+                // Reset progress
+                document.getElementById('progressFill').style.width = '0%';
+            }
+        }
+
+        // Initialize quiz when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new CasinoQuiz();
+        });
+
         // Bonus wheel functionality
         const bonuses = [
             { text: "$50 Free Bonus", subtext: "No deposit required!", icon: "💰", code: "DREAM50" },
