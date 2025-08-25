@@ -329,13 +329,35 @@
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button type="button" class="text-white hover:text-yellow-300 focus:outline-none focus:text-yellow-300">
+                    <button type="button" id="mobile-menu-button" class="text-white hover:text-yellow-300 focus:outline-none focus:text-yellow-300">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-purple-700">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="text-white hover:text-yellow-300 block px-3 py-2 text-base font-medium">Home</a>
+                    <a href="casinos.html" class="text-white hover:text-yellow-300 block px-3 py-2 text-base font-medium">Casinos</a>
+                    <a href="bonuses.html" class="text-white hover:text-yellow-300 block px-3 py-2 text-base font-medium">Bonuses</a>
+                    <a href="reviews.html" class="text-yellow-300 block px-3 py-2 text-base font-medium border-l-4 border-yellow-300">Reviews</a>
+                    <a href="slots/index.html" class="text-white hover:text-yellow-300 block px-3 py-2 text-base font-medium">Slots</a>
+                    <a href="calculators.html" class="text-white hover:text-yellow-300 block px-3 py-2 text-base font-medium">Calculators</a>
+                    <a href="blog.html" class="text-white hover:text-yellow-300 block px-3 py-2 text-base font-medium">Blog</a>
+                    <a href="methodology.html" class="text-white hover:text-yellow-300 block px-3 py-2 text-base font-medium">How We Review</a>
+                </div>
+            </div>
         </nav>
     </header>
+    
+    <script>
+        // Mobile menu toggle functionality
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
 
     <!-- Main Content -->
     <div class="min-h-screen bg-gray-50">
