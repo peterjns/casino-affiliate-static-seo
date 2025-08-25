@@ -44,39 +44,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Mobile-first approach */
-        .mobile-menu { 
-            display: none; 
-            background: rgba(139, 69, 19, 0.1);
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-        .mobile-menu.show { 
-            display: block !important; 
-            animation: slideDown 0.3s ease-out;
+        /* Simple responsive navigation */
+        .mobile-menu { display: none; }
+        .mobile-menu.show { display: block; }
+        
+        /* Hide mobile nav on desktop */
+        @media (min-width: 768px) {
+            .mobile-only { display: none !important; }
         }
         
-        /* Desktop first approach - show desktop by default */
-        .mobile-nav { display: none; }
-        .desktop-nav { display: block; }
-        
-        /* Mobile: Show mobile nav, hide desktop nav */
-        @media screen and (max-width: 767px) {
-            .mobile-nav { display: block !important; }
-            .desktop-nav { display: none !important; }
-        }
-        
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Ensure mobile menu button is touch-friendly */
-        #mobile-menu-btn {
-            min-width: 44px;
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Hide desktop nav on mobile */
+        @media (max-width: 767px) {
+            .desktop-only { display: none !important; }
         }
     </style>
     
@@ -91,7 +70,7 @@
 </head>
 <body class="bg-gray-50">
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav bg-gradient-to-r from-purple-600 via-blue-600 to-green-600 shadow-lg">
+    <nav class="mobile-only bg-gradient-to-r from-purple-600 via-blue-600 to-green-600 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <div class="text-white text-xl font-bold">🎰 CasinosOnlineJackpot</div>
@@ -113,7 +92,7 @@
     </nav>
 
     <!-- Desktop Header -->
-    <header class="desktop-nav bg-gradient-to-r from-purple-600 via-blue-600 to-green-600 shadow-lg">
+    <header class="desktop-only bg-gradient-to-r from-purple-600 via-blue-600 to-green-600 shadow-lg">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
@@ -734,34 +713,22 @@
             });
         });
         
-        // Mobile menu toggle - ensure it works on all devices
-        function toggleMobileMenu() {
-            var menu = document.getElementById('mobile-menu');
-            var btn = document.getElementById('mobile-menu-btn');
-            var icon = btn.querySelector('i');
-            
-            console.log('Menu toggle clicked', menu, menu.style.display);
-            
-            if (menu.classList.contains('show')) {
-                menu.classList.remove('show');
-                icon.className = 'fas fa-bars text-2xl';
-                console.log('Menu closed');
-            } else {
-                menu.classList.add('show');
-                icon.className = 'fas fa-times text-2xl';
-                console.log('Menu opened');
-            }
-        }
-        
-        // Add event listener when DOM is ready
+        // Simple mobile menu toggle
         document.addEventListener('DOMContentLoaded', function() {
             var btn = document.getElementById('mobile-menu-btn');
-            if (btn) {
-                btn.addEventListener('click', toggleMobileMenu);
-                btn.addEventListener('touchstart', toggleMobileMenu);
-                console.log('Mobile menu button initialized');
-            } else {
-                console.error('Mobile menu button not found');
+            var menu = document.getElementById('mobile-menu');
+            
+            if (btn && menu) {
+                btn.addEventListener('click', function() {
+                    var icon = btn.querySelector('i');
+                    if (menu.style.display === 'block') {
+                        menu.style.display = 'none';
+                        icon.className = 'fas fa-bars text-2xl';
+                    } else {
+                        menu.style.display = 'block';
+                        icon.className = 'fas fa-times text-2xl';
+                    }
+                });
             }
         });
     </script>
