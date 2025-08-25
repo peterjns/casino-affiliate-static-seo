@@ -44,15 +44,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .mobile-menu { display: none; }
-        .mobile-menu.show { display: block; }
-        @media (max-width: 767px) {
-            .desktop-nav { display: none !important; }
-            .mobile-nav { display: block !important; }
+        /* Mobile-first approach */
+        .mobile-menu { 
+            display: none; 
+            background: rgba(139, 69, 19, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
+        .mobile-menu.show { 
+            display: block !important; 
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        /* Default: Show mobile nav, hide desktop */
+        .mobile-nav { display: block; }
+        .desktop-nav { display: none; }
+        
+        /* Desktop: Hide mobile nav, show desktop */
         @media (min-width: 768px) {
             .mobile-nav { display: none !important; }
             .desktop-nav { display: block !important; }
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Ensure mobile menu button is touch-friendly */
+        #mobile-menu-btn {
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
     
@@ -710,16 +734,34 @@
             });
         });
         
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+        // Mobile menu toggle - ensure it works on all devices
+        function toggleMobileMenu() {
             var menu = document.getElementById('mobile-menu');
-            var icon = this.querySelector('i');
+            var btn = document.getElementById('mobile-menu-btn');
+            var icon = btn.querySelector('i');
+            
+            console.log('Menu toggle clicked', menu, menu.style.display);
+            
             if (menu.classList.contains('show')) {
                 menu.classList.remove('show');
                 icon.className = 'fas fa-bars text-2xl';
+                console.log('Menu closed');
             } else {
                 menu.classList.add('show');
                 icon.className = 'fas fa-times text-2xl';
+                console.log('Menu opened');
+            }
+        }
+        
+        // Add event listener when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            var btn = document.getElementById('mobile-menu-btn');
+            if (btn) {
+                btn.addEventListener('click', toggleMobileMenu);
+                btn.addEventListener('touchstart', toggleMobileMenu);
+                console.log('Mobile menu button initialized');
+            } else {
+                console.error('Mobile menu button not found');
             }
         });
     </script>
