@@ -55,14 +55,14 @@
             animation: slideDown 0.3s ease-out;
         }
         
-        /* Default: Show mobile nav, hide desktop */
-        .mobile-nav { display: block; }
-        .desktop-nav { display: none; }
+        /* Desktop first approach - show desktop by default */
+        .mobile-nav { display: none; }
+        .desktop-nav { display: block; }
         
-        /* Desktop: Hide mobile nav, show desktop */
-        @media (min-width: 768px) {
-            .mobile-nav { display: none !important; }
-            .desktop-nav { display: block !important; }
+        /* Mobile: Show mobile nav, hide desktop nav */
+        @media screen and (max-width: 767px) {
+            .mobile-nav { display: block !important; }
+            .desktop-nav { display: none !important; }
         }
         
         @keyframes slideDown {
