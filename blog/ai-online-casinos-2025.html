@@ -155,13 +155,26 @@
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
-                    <button type="button" class="text-white hover:text-yellow-300 focus:outline-none focus:text-yellow-300">
+                    <button type="button" id="mobile-menu-button" class="text-white hover:text-yellow-300 focus:outline-none focus:text-yellow-300">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </nav>
-
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-white shadow-lg hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="../index.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium">Home</a>
+                <a href="../casinos.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium">Casinos</a>
+                <a href="../bonuses.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium">Bonuses</a>
+                <a href="../reviews.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium">Reviews</a>
+                <a href="../calculators.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium">Calculators</a>
+                <a href="../blog.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium">Blog</a>
+                <a href="../methodology.html" class="text-gray-700 hover:text-blue-600 block px-3 py-2 text-base font-medium">How We Review</a>
+            </div>
+        </div>
+    </header>
 
     <!-- Standard Header -->
     
@@ -460,5 +473,22 @@
 
 
 
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('i');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                mobileMenu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    </script>
 </body>
 </html>
